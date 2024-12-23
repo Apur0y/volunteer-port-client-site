@@ -10,6 +10,7 @@ import AddVolunteerPost from "../pages/NeedVolunteer/AddVolunteerPost";
 import Private from "./PrivateRoute/Private";
 import MyVolunteerPosts from "../pages/NeedVolunteer/ManageVolunteer";
 import UpdateVolunteerPost from "../pages/NeedVolunteer/ManagePost";
+import VolunteerPosts from "../pages/allNeedPost/VolunteerPosts";
 
   const router = createBrowserRouter([
     {
@@ -39,6 +40,10 @@ import UpdateVolunteerPost from "../pages/NeedVolunteer/ManagePost";
         {
           path:'updatepost',
           element:<Private><UpdateVolunteerPost></UpdateVolunteerPost></Private>
+        },
+        {
+          path:'allposts',
+          element:<VolunteerPosts></VolunteerPosts>
         }
       ]
     },

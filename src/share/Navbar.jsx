@@ -6,6 +6,12 @@ const Navbar = () => {
 
   const {user,userSignOut} = useContext(AuthContext)
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   const handleSignOut=()=>{
     userSignOut()
   }
@@ -14,10 +20,10 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <Link>Home</Link>
+        <Link to='/'>Home</Link>
       </li>
       <li>
-        <Link>All Volunteer</Link>
+        <Link to='/allposts'>All Volunteer</Link>
       </li>
       <li>
         
@@ -41,7 +47,7 @@ const Navbar = () => {
     <div className="navbar bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} role="button" onClick={toggleDropdown} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -57,12 +63,14 @@ const Navbar = () => {
               />
             </svg>
           </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-          >
-            {links}
-          </ul>
+          {isOpen && (
+        <ul
+          tabIndex={0}
+          className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[30] mt-3 w-52 p-2 shadow"
+        >
+          {links}
+        </ul>
+      )}
         </div>
         <img src="/sidelogo.png" alt="" className="w-10" />
         <a className="btn btn-ghost text-xl">Volunteer Port</a>
@@ -73,7 +81,7 @@ const Navbar = () => {
       <div className="navbar-end">
         {user ? (
           <>
-            <img src={user.photoURL} alt="" />
+            <img src={user.photoURL} alt="" className="w-16 rounded-full mr-4" />
             <Link ><button onClick={handleSignOut} className="btn"> Logout </button></Link>
           </>
         ) : (

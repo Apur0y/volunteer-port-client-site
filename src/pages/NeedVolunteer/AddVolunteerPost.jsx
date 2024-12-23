@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -30,6 +31,8 @@ const AddVolunteerPost = ({ user }) => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
 
+    axios.post('http://localhost:3000/addpost',formData)
+    .then(res=>console.log(res.data))
     // Add logic to send data to your backend or API
   };
 
