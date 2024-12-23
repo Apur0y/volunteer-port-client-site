@@ -58,6 +58,11 @@ const Register = () => {
       console.log(res)
       updateUserProfile({ displayName: name, photoURL: photoURL })
       navigate('/')
+      Swal.fire({
+        icon: "success",
+        title: "Registration Successful",
+        text: `Welcome, ${name}!`,
+      });
     }
       
     )
@@ -65,13 +70,7 @@ const Register = () => {
         console.log(error.data)
     })
 
-    if (validatePassword(password)) {
-      Swal.fire({
-        icon: "success",
-        title: "Registration Successful",
-        text: `Welcome, ${name}!`,
-      });
-    }
+    
   };
 
   return (
