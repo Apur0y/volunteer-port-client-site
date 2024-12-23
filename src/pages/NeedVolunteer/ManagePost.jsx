@@ -1,14 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import DatePicker from "react-datepicker";
+// import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import toast, { Toaster } from "react-hot-toast";
+import AuthContext from "../../context/AuthContext/AuthContext";
+// import toast, { Toaster } from "react-hot-toast";
 
 const UpdateVolunteerPost = ({ user }) => {
   const { id } = useParams(); // Get post ID from route params
   const navigate = useNavigate();
   const [post, setPost] = useState(null);
-  const [loading, setLoading] = useState(true);
+const {loading} = useContext(AuthContext)
 
   // Fetch the post details by ID
   useEffect(() => {
@@ -19,7 +20,7 @@ const UpdateVolunteerPost = ({ user }) => {
         setPost(data);
       } catch (error) {
         console.error("Error fetching post:", error);
-        toast.error("Failed to load post data.");
+        // toast.error("Failed to load post data.");
       } finally {
         setLoading(false);
       }
@@ -41,14 +42,14 @@ const UpdateVolunteerPost = ({ user }) => {
       });
 
       if (response.ok) {
-        toast.success("Post updated successfully!");
+        // toast.success("Post updated successfully!");
         navigate("/my-posts"); // Navigate back to the user's posts page
       } else {
-        toast.error("Failed to update post.");
+        // toast.error("Failed to update post.");
       }
     } catch (error) {
       console.error("Error updating post:", error);
-      toast.error("An error occurred while updating the post.");
+      // toast.error("An error occurred while updating the post.");
     }
   };
 
@@ -62,7 +63,7 @@ const UpdateVolunteerPost = ({ user }) => {
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow rounded">
-      <Toaster />
+      {/* <Toaster /> */}
       <h2 className="text-2xl font-bold mb-6 text-center">Update Volunteer Post</h2>
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
@@ -153,12 +154,12 @@ const UpdateVolunteerPost = ({ user }) => {
             <label htmlFor="deadline" className="block text-sm font-medium text-gray-700">
               Deadline
             </label>
-            <DatePicker
+            {/* <DatePicker
               selected={new Date(post.deadline) || ""}
               onChange={(date) => setPost({ ...post, deadline: date })}
               dateFormat="yyyy-MM-dd"
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200"
-            />
+            /> */}
           </div>
         </div>
 

@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 const VolunteerNeed = () => {
-//   const sortedPost?s = post?s
-//     .sort((a, b) => new Date(a.deadline) - new Date(b.deadline))
-//     .slice(0, 6);
+  const [posts, setPosts] = useState([]);
+
+  // Fetch user-specific posts
+  useEffect(() => {
+    axios.get("http://localhost:3000/allposts")
+    .then(res=>setPosts(res.data))
+  }, []);
+  const sortedPosts = posts
+    .sort((a, b) => new Date(a.deadline) - new Date(b.deadline))
+    .slice(0, 6);
 
   return (
     <div className="my-8">
       <h2 className="text-2xl font-bold text-center text-green-600">Volunteer Needs Now</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        {/* {sortedPosts.map((post) => ( */}
+        {sortedPosts.map((post) => (
           <div key={post?.id} className="border rounded shadow-md p-4">
             <img
               src={post?.thumbnail}
@@ -23,7 +30,7 @@ const VolunteerNeed = () => {
               View Details
             </button>
           </div>
-        {/* ))} */}
+))} 
       </div>
       <div className="text-center mt-4">
         <button className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">

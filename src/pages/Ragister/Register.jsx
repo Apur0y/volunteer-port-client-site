@@ -4,9 +4,6 @@ import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
 import Lottie from "lottie-react";
 import animationData from "../../assets/Lottie/register.json"
-
-import { auth } from "../../firebase.init";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext/AuthContext";
 

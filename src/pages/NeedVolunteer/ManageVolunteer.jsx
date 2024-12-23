@@ -1,15 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
+import axios from "axios";
 
 const MyVolunteerPosts = () => {
-const {user} = useContext(AuthContext)
+  const { user, loading } = useContext(AuthContext);
+  const [posts, setPosts] = useState([]);
 
   // Fetch user-specific posts
-
+  useEffect(() => {
+    axios.get("http://localhost:3000/allposts")
+    .then(res=>setPosts(res.data))
+  }, []);
   // Handle delete post
   const handleDelete = async (id) => {
-    const confirm = window.confirm("Are you sure you want to delete this post?");
-   
+    const confirm = window.confirm(
+      "Are you sure you want to delete this post?"
+    );
   };
 
   // Handle update (Navigate to update page or show update form)
@@ -20,7 +26,9 @@ const {user} = useContext(AuthContext)
 
   return (
     <div className="max-w-6xl mx-auto mt-10 p-6 bg-white shadow rounded">
-      <h2 className="text-2xl font-bold mb-6 text-center">My Volunteer Need Posts</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">
+        My Volunteer Need Posts
+      </h2>
 
       {loading ? (
         <p className="text-center">Loading your posts...</p>
@@ -42,9 +50,15 @@ const {user} = useContext(AuthContext)
             <tbody>
               {posts.map((post) => (
                 <tr key={post.id} className="hover:bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-2">{post.title}</td>
-                  <td className="border border-gray-300 px-4 py-2">{post.category}</td>
-                  <td className="border border-gray-300 px-4 py-2">{new Date(post.deadline).toLocaleDateString()}</td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {post.postTitle}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {post.category}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {new Date(post.deadline).toLocaleDateString()}
+                  </td>
                   <td className="border border-gray-300 px-4 py-2 flex space-x-2">
                     <button
                       onClick={() => handleUpdate(post.id)}
