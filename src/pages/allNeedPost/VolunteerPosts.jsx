@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const VolunteerPosts = () => {
@@ -59,12 +59,14 @@ const VolunteerPosts = () => {
             <p className="text-sm text-gray-500">
               <strong>Location:</strong> {post.location}
             </p>
+            <Link to='viewdetails'>\
             <button
               onClick={() => navigate(`/post/${post.id}`)}
               className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
             >
               View Details
-            </button>
+            </button></Link>
+        
           </div>
         ))}
       </div>

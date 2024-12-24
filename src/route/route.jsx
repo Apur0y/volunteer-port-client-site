@@ -12,6 +12,7 @@ import MyVolunteerPosts from "../pages/NeedVolunteer/ManageVolunteer";
 
 import VolunteerPosts from "../pages/allNeedPost/VolunteerPosts";
 import UpdateVolunteerPost from "../pages/NeedVolunteer/UpdateVolunteerPost";
+import BeVolunteer from "../pages/allNeedPost/BeVolunteer";
 
   const router = createBrowserRouter([
     {
@@ -39,13 +40,17 @@ import UpdateVolunteerPost from "../pages/NeedVolunteer/UpdateVolunteerPost";
           element:<Private><MyVolunteerPosts></MyVolunteerPosts></Private>
         },
         {
-          path:'updatepost',
+          path:'updatepost/:id',
           element:<Private><UpdateVolunteerPost></UpdateVolunteerPost></Private>
         },
         {
           path:'allposts',
           element:<VolunteerPosts></VolunteerPosts>
         },
+        {
+          path:'viewdetails',
+          element:<Private><BeVolunteer></BeVolunteer></Private>
+        }
     
       ]
     },
