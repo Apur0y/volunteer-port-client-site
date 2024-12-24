@@ -9,8 +9,9 @@ import Register from "../pages/Ragister/Register";
 import AddVolunteerPost from "../pages/NeedVolunteer/AddVolunteerPost";
 import Private from "./PrivateRoute/Private";
 import MyVolunteerPosts from "../pages/NeedVolunteer/ManageVolunteer";
-import UpdateVolunteerPost from "../pages/NeedVolunteer/ManagePost";
+
 import VolunteerPosts from "../pages/allNeedPost/VolunteerPosts";
+import UpdateVolunteerPost from "../pages/NeedVolunteer/UpdateVolunteerPost";
 
   const router = createBrowserRouter([
     {
@@ -44,7 +45,8 @@ import VolunteerPosts from "../pages/allNeedPost/VolunteerPosts";
         {
           path:'allposts',
           element:<VolunteerPosts></VolunteerPosts>
-        }
+        },
+    
       ]
     },
   ]);

@@ -4,38 +4,63 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 
-
 const Banner = () => {
   return (
     <Swiper
       modules={[Navigation, Autoplay]}
       navigation
-      autoplay={{ delay: 3000 }}
+      autoplay={{ delay: 4000 }}
       loop={true}
-      className="w-full h-[500px]"
+      className="w-full h-[600px]"
     >
-      <SwiperSlide className="bg-emerald-900 flex items-center justify-center text-white text-xl font-bold">
-        <div className="flex w-1/2">
-          
-          <h2>Slide 1: Join Us in Making a Difference</h2>
-          <p>Be part of our volunteer team today!</p>
-          <img src="https://factsmgt.com/wp-content/uploads/5-Benefits-of-Volunteering-at-Your-Childrens-School.jpg" alt="" className="m-10 rounded-full" />
+      {/* Slide 1 */}
+      <SwiperSlide className="flex items-center bg-cover bg-center bg-no-repeat text-white px-6 lg:px-20 h-full" 
+        style={{ backgroundImage: "url('https://factsmgt.com/wp-content/uploads/5-Benefits-of-Volunteering-at-Your-Childrens-School.jpg')" }}
+      >
+        <div className="bg-black bg-opacity-50 mx-auto p-8 top-1/2 rounded-lg w-full lg:w-1/2">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4">
+            Join Us in Making a Difference
+          </h2>
+          <p className="text-lg lg:text-xl mb-6">
+            Be part of our volunteer team and create a lasting impact!
+          </p>
+          <button className="bg-emerald-500 hover:bg-emerald-600 text-white py-3 px-6 rounded-lg text-lg">
+            Get Involved
+          </button>
         </div>
       </SwiperSlide>
-      <SwiperSlide className="bg-emerald-900 flex items-center justify-center text-white text-xl font-bold">
-        <div className="flex justify-between">
-         <div className="flex flex-col ">
-         <h2>Slide 2: Your Help Matters</h2>
-         <p>Contribute to the community with your skills.</p>
-         </div>
-          <img src="https://es.statefarm.com/content/dam/sf-library/en-us/secure/legacy/simple-insights/volunteer-at-a-school.jpg" alt="" />
+
+      {/* Slide 2 */}
+      <SwiperSlide className="flex items-center bg-cover bg-center bg-no-repeat text-white px-6 lg:px-20 h-full"
+        style={{ backgroundImage: "url('https://es.statefarm.com/content/dam/sf-library/en-us/secure/legacy/simple-insights/volunteer-at-a-school.jpg')" }}
+      >
+        <div className="bg-black bg-opacity-50 mx-auto p-8 rounded-lg w-full lg:w-1/2">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4">
+            Your Help Matters
+          </h2>
+          <p className="text-lg lg:text-xl mb-6">
+            Use your unique skills to uplift our community!
+          </p>
+          <button className="bg-emerald-500 hover:bg-emerald-600 text-white py-3 px-6 rounded-lg text-lg">
+            Learn More
+          </button>
         </div>
       </SwiperSlide>
-      <SwiperSlide className="bg-emerald-900 flex items-center justify-center text-white text-xl font-bold">
-        <div className="flex w-1/2">
-          <h2>Slide 3: Make a Positive Impact</h2>
-          <p>Explore our volunteer opportunities now!</p>
-          <img src="https://www.stollerykids.com/content/uploads/2022/07/CubCinema_volunteers.jpg" alt="" />
+
+      {/* Slide 3 */}
+      <SwiperSlide className="flex items-center bg-cover bg-center bg-no-repeat text-white px-6 lg:px-20 h-full"
+        style={{ backgroundImage: "url('https://www.stollerykids.com/content/uploads/2022/07/CubCinema_volunteers.jpg')" }}
+      >
+        <div className="bg-black bg-opacity-50 mx-auto p-8 rounded-lg w-full lg:w-1/2">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-4">
+            Make a Positive Impact
+          </h2>
+          <p className="text-lg lg:text-xl mb-6">
+            Explore our volunteer opportunities and start today!
+          </p>
+          <button className="bg-emerald-500 hover:bg-emerald-600 text-white py-3 px-6 rounded-lg text-lg">
+            Explore Now
+          </button>
         </div>
       </SwiperSlide>
     </Swiper>

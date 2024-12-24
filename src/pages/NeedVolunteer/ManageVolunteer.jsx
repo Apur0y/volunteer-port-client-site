@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const MyVolunteerPosts = () => {
   const { user, loading } = useContext(AuthContext);
@@ -21,7 +22,7 @@ const MyVolunteerPosts = () => {
   // Handle update (Navigate to update page or show update form)
   const handleUpdate = (id) => {
     // Navigate to update page (example: `/update-post/${id}`)
-    window.location.href = `/update-post/${id}`;
+   
   };
 
   return (
@@ -60,12 +61,14 @@ const MyVolunteerPosts = () => {
                     {new Date(post.deadline).toLocaleDateString()}
                   </td>
                   <td className="border border-gray-300 px-4 py-2 flex space-x-2">
-                    <button
+                 <Link to={`/updatepost/${post.id}`}>
+                 <button
                       onClick={() => handleUpdate(post.id)}
                       className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
                     >
                       Update
                     </button>
+                 </Link>
                     <button
                       onClick={() => handleDelete(post.id)}
                       className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
