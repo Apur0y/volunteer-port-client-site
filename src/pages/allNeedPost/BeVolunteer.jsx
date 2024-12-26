@@ -45,7 +45,13 @@ const BeVolunteer = () => {
       axios.post("http://localhost:3000/requested",{
         ...requestData,
         postId: postDetails.id,
-        postDetails
+        thumbnail:postDetails.thumbnail,
+        postTitle:postDetails.postTitle,
+        description:postDetails.description,
+        category:postDetails.category ,
+        location: postDetails.location,
+        volunteersNeeded:postDetails.volunteers ,
+        deadline:postDetails.deadline,
       });
       // Decrease the number of volunteers needed
       // await axios.put(`/update-volunteers-needed/${postId}`, { count: -1 });
