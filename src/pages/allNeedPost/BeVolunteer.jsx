@@ -1,70 +1,74 @@
 import React, { useState, useEffect } from "react";
-import Modal from "react-modal"; // Install: npm install react-modal
+import { useParams } from "react-router-dom"; // Import useParams to get params from the URL
 import axios from "axios";
 
-Modal.setAppElement("#root"); // For accessibility
-
-const BeVolunteer = ({ isOpen, closeModal, postId, user }) => {
+const BeVolunteer = ({ user }) => {
+  const { postId } = useParams(); // Get postId from URL params
   const [postDetails, setPostDetails] = useState(null);
-  const [suggestion, setSuggestion] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [hasVolunteered, setHasVolunteered] = useState(false);
 
-  // Fetch post details by ID when the modal opens
+  // Fetch post details by ID when the component mounts or when postId changes
   useEffect(() => {
-    if (postId) {
-      axios
-        .get(`/update-post/${postId}`)
-        .then((response) => setPostDetails(response.data))
-        .catch((error) => console.error("Error fetching post details:", error));
-    }
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3000/postdetails/${postId}`
+        );
+        setPostDetails(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      }
+    };
+    fetchPosts();
   }, [postId]);
 
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  console.log(postDetails);
+  // Handle "Become a Volunteer" button click
+  const handleBecomeVolunteer = async () => {
     const requestData = {
-      ...postDetails,
       volunteerName: user.name,
       volunteerEmail: user.email,
-      suggestion,
       status: "requested",
     };
 
     try {
       // Save the request to the database
-      await axios.post("/volunteer-requests", requestData);
+      await axios.post("/volunteer-requests", {
+        ...requestData,
+        postId: postDetails.id,
+      });
 
       // Decrease the number of volunteers needed
       await axios.put(`/update-volunteers-needed/${postId}`, { count: -1 });
 
-      alert("Request submitted successfully!");
-      closeModal(); // Close the modal
+      setHasVolunteered(true);
+      alert("You have successfully volunteered for this post!");
     } catch (error) {
       console.error("Error submitting request:", error);
-      alert("Failed to submit the request.");
+      alert("Failed to volunteer.");
     }
   };
 
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={closeModal}
-      contentLabel="Volunteer Request Modal"
-      className="modal-content"
-      overlayClassName="modal-overlay"
-    >
-      <h2 className="text-xl font-bold mb-4">Volunteer Request</h2>
+    <div className="volunteer-container">
+      <h2 className="text-xl font-bold mb-4">Post Details</h2>
 
-      {postDetails ? (
-        <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Read-only fields */}
+      {loading && <p>Loading post details...</p>}
+
+      {error && <p className="text-red-500">{error}</p>}
+
+      {postDetails && !loading && !error && (
+        <>
+          {/* Display Post Details */}
           <div>
             <label className="block font-medium">Thumbnail</label>
             <img
               src={postDetails.thumbnail}
               alt="Post Thumbnail"
               className="w-32 h-32 object-cover rounded"
-              readOnly
             />
           </div>
 
@@ -72,7 +76,7 @@ const BeVolunteer = ({ isOpen, closeModal, postId, user }) => {
             <label className="block font-medium">Post Title</label>
             <input
               type="text"
-              value={postDetails.title}
+              value={postDetails.postTitle}
               readOnly
               className="w-full border rounded p-2 bg-gray-100"
             />
@@ -88,7 +92,6 @@ const BeVolunteer = ({ isOpen, closeModal, postId, user }) => {
             />
           </div>
 
-          {/* Other read-only fields */}
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="block font-medium">Category</label>
@@ -142,51 +145,24 @@ const BeVolunteer = ({ isOpen, closeModal, postId, user }) => {
             />
           </div>
 
-          {/* Volunteer info */}
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block font-medium">Volunteer Name</label>
-              <input
-                type="text"
-                value={user.name}
-                readOnly
-                className="w-full border rounded p-2 bg-gray-100"
-              />
-            </div>
-            <div>
-              <label className="block font-medium">Volunteer Email</label>
-              <input
-                type="email"
-                value={user.email}
-                readOnly
-                className="w-full border rounded p-2 bg-gray-100"
-              />
-            </div>
+          {/* Volunteer Status */}
+          <div className="mt-4">
+            {hasVolunteered ? (
+              <p className="text-green-500">
+                You are now a volunteer for this post.
+              </p>
+            ) : (
+              <button
+                onClick={handleBecomeVolunteer}
+                className="bg-emerald-500 text-white py-2 px-4 rounded hover:bg-emerald-600"
+              >
+                Become a Volunteer
+              </button>
+            )}
           </div>
-
-          {/* Suggestion */}
-          <div>
-            <label className="block font-medium">Suggestion</label>
-            <textarea
-              value={suggestion}
-              onChange={(e) => setSuggestion(e.target.value)}
-              className="w-full border rounded p-2"
-              rows="3"
-            />
-          </div>
-
-          {/* Submit button */}
-          <button
-            type="submit"
-            className="bg-emerald-500 text-white py-2 px-4 rounded hover:bg-emerald-600"
-          >
-            Request
-          </button>
-        </form>
-      ) : (
-        <p>Loading post details...</p>
+        </>
       )}
-    </Modal>
+    </div>
   );
 };
 

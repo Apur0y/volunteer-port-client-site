@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const MyVolunteerPosts = () => {
   const { user, loading } = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
-
+console.log(posts)
   // Fetch user-specific posts
   useEffect(() => {
     axios.get("http://localhost:3000/allposts")
