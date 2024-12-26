@@ -1,9 +1,13 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import AuthContext from "../../context/AuthContext/AuthContext";
 
-const AddVolunteerPost = ({ user }) => {
+const AddVolunteerPost = () => {
+
+  const {user} = useContext(AuthContext)
+  console.log(user)
   const [formData, setFormData] = useState({
     thumbnail: null,
     postTitle: "",
@@ -33,7 +37,7 @@ const AddVolunteerPost = ({ user }) => {
 
     axios.post('http://localhost:3000/addpost',formData)
     .then(res=>console.log(res.data))
-    // Add logic to send data to your backend or API
+    
   };
 
   return (
@@ -139,7 +143,7 @@ const AddVolunteerPost = ({ user }) => {
             <label className="block text-sm font-medium">Organizer Name</label>
             <input
               type="text"
-              value={user?.name}
+              value={user?.displayName}
               readOnly
               className="w-full px-3 py-2 border rounded bg-gray-100"
             />

@@ -5,12 +5,15 @@ import { Link } from "react-router-dom";
 
 const MyVolunteerPosts = () => {
   const { user, loading } = useContext(AuthContext);
+  console.log(JSON.stringify(user, null, 2));
+
   const [posts, setPosts] = useState([]);
-console.log(posts)
+  console.log(posts);
   // Fetch user-specific posts
   useEffect(() => {
-    axios.get("http://localhost:3000/allposts")
-    .then(res=>setPosts(res.data))
+    axios
+      .get(`http://localhost:3000/userposts?email=${user?.email}`)
+      .then((res) => setPosts(res.data));
   }, []);
   // Handle delete post
   const handleDelete = async (id) => {
@@ -21,8 +24,7 @@ console.log(posts)
 
   // Handle update (Navigate to update page or show update form)
   const handleUpdate = (id) => {
-    // Navigate to update page (example: `/update-post/${id}`)
-   
+    // Navigate to update page (example: /update-post/${id})
   };
 
   return (
@@ -61,14 +63,14 @@ console.log(posts)
                     {new Date(post.deadline).toLocaleDateString()}
                   </td>
                   <td className="border border-gray-300 px-4 py-2 flex space-x-2">
-                 <Link to={`/updatepost/${post.id}`}>
-                 <button
-                      onClick={() => handleUpdate(post.id)}
-                      className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
-                    >
-                      Update
-                    </button>
-                 </Link>
+                    <Link to={`/updatepost/${post.id}`}>
+                      <button
+                        onClick={() => handleUpdate(post.id)}
+                        className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+                      >
+                        Update
+                      </button>
+                    </Link>
                     <button
                       onClick={() => handleDelete(post.id)}
                       className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"

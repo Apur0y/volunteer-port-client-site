@@ -14,8 +14,12 @@ const Banner = () => {
       className="w-full h-[600px]"
     >
       {/* Slide 1 */}
-      <SwiperSlide className="flex items-center bg-cover bg-center bg-no-repeat text-white px-6 lg:px-20 h-full" 
-        style={{ backgroundImage: "url('https://factsmgt.com/wp-content/uploads/5-Benefits-of-Volunteering-at-Your-Childrens-School.jpg')" }}
+      <SwiperSlide
+        className="flex items-center bg-cover bg-center bg-no-repeat text-white px-6 lg:px-20 h-full"
+        style={{
+          backgroundImage:
+            "url('https://factsmgt.com/wp-content/uploads/5-Benefits-of-Volunteering-at-Your-Childrens-School.jpg')",
+        }}
       >
         <div className="bg-black bg-opacity-50 mx-auto p-8 top-1/2 rounded-lg w-full lg:w-1/2">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
@@ -31,10 +35,14 @@ const Banner = () => {
       </SwiperSlide>
 
       {/* Slide 2 */}
-      <SwiperSlide className="flex items-center bg-cover bg-center bg-no-repeat text-white px-6 lg:px-20 h-full"
-        style={{ backgroundImage: "url('https://es.statefarm.com/content/dam/sf-library/en-us/secure/legacy/simple-insights/volunteer-at-a-school.jpg')" }}
+      <SwiperSlide
+        className="flex items-center justify-center bg-cover bg-center bg-no-repeat text-white px-6 lg:px-20 h-full"
+        style={{
+          backgroundImage:
+            "url('https://es.statefarm.com/content/dam/sf-library/en-us/secure/legacy/simple-insights/volunteer-at-a-school.jpg')",
+        }}
       >
-        <div className="bg-black bg-opacity-50 mx-auto p-8 rounded-lg w-full lg:w-1/2">
+        <div className="bg-black bg-opacity-50 mx-auto p-8 rounded-lg w-full  lg:w-1/2 text-center">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
             Your Help Matters
           </h2>
@@ -48,8 +56,12 @@ const Banner = () => {
       </SwiperSlide>
 
       {/* Slide 3 */}
-      <SwiperSlide className="flex items-center bg-cover bg-center bg-no-repeat text-white px-6 lg:px-20 h-full"
-        style={{ backgroundImage: "url('https://www.stollerykids.com/content/uploads/2022/07/CubCinema_volunteers.jpg')" }}
+      <SwiperSlide
+        className="flex items-center bg-cover bg-center bg-no-repeat text-white px-6 lg:px-20 h-full"
+        style={{
+          backgroundImage:
+            "url('https://www.stollerykids.com/content/uploads/2022/07/CubCinema_volunteers.jpg')",
+        }}
       >
         <div className="bg-black bg-opacity-50 mx-auto p-8 rounded-lg w-full lg:w-1/2">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">

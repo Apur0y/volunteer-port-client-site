@@ -29,7 +29,7 @@ const Navbar = () => {
         
         <div className="dropdown">
           <div tabIndex={0} >
-          <Link>My Profile</Link>
+        <button>My Profile</button>
           </div>
           <ul
             tabIndex={0}
@@ -44,7 +44,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar border-b-2">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" onClick={toggleDropdown} className="btn btn-ghost lg:hidden">

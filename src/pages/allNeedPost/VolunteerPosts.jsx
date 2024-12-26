@@ -59,13 +59,13 @@ const VolunteerPosts = () => {
             <p className="text-sm text-gray-500">
               <strong>Location:</strong> {post.location}
             </p>
-            <Link to='viewdetails'>\
+           
             <button
-              onClick={() => navigate(`/post/${post.id}`)}
+              onClick={() => navigate(`/viewdetails/${post._id}`)}
               className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
             >
               View Details
-            </button></Link>
+            </button>
         
           </div>
         ))}
