@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "updatepost/:id",
+        path: "updatepost/:postId",
         element: (
           <Private>
             <UpdateVolunteerPost></UpdateVolunteerPost>

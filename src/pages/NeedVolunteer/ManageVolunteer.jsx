@@ -5,30 +5,87 @@ import { Link } from "react-router-dom";
 
 const MyVolunteerPosts = () => {
   const { user, loading } = useContext(AuthContext);
-  console.log(JSON.stringify(user, null, 2));
+
 
   const [posts, setPosts] = useState([]);
+  const [request, setRequest] = useState([]);
   console.log(posts);
+  console.log(request)
   // Fetch user-specific posts
   useEffect(() => {
     axios
       .get(`http://localhost:3000/userposts?email=${user?.email}`)
       .then((res) => setPosts(res.data));
+
+      axios.get(`http://localhost:3000/userposts?email=${user?.email}`)
+      .then(res=>setRequest(res.data))
+
   }, []);
+
   // Handle delete post
   const handleDelete = async (id) => {
-    const confirm = window.confirm(
-      "Are you sure you want to delete this post?"
-    );
+    axios.delete(`http://localhost:3000/updatepost/${id}`) // Corrected endpoint
+      .then((res) => {
+        alert("Delete complete");
+        console.log("Deleted:", res.data);
+        // Optional: Update the posts state to remove the deleted post
+        setPosts((prevPosts) => prevPosts.filter((post) => post._id !== id));
+      })
+      .catch((err) => {
+        console.error("Error deleting post:", err);
+      });
   };
+  
 
-  // Handle update (Navigate to update page or show update form)
-  const handleUpdate = (id) => {
-    // Navigate to update page (example: /update-post/${id})
-  };
+
 
   return (
     <div className="max-w-6xl mx-auto mt-10 p-6 bg-white shadow rounded">
+      <div className="">
+      <div className="max-w-6xl mx-auto mt-10 p-6 bg-white shadow rounded">
+      <h2 className="text-2xl font-bold mb-6 text-center">My Volunteer Request</h2>
+
+      {!request ? (
+        <p className="text-center text-gray-500">
+          No volunteer request found. Start by creating one!
+        </p>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="w-full border-collapse border border-gray-300">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="border border-gray-300 px-4 py-2">Thumbnail</th>
+                <th className="border border-gray-300 px-4 py-2">Post Title</th>
+                <th className="border border-gray-300 px-4 py-2">Category</th>
+                <th className="border border-gray-300 px-4 py-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="hover:bg-gray-50">
+                <td className="border border-gray-300 px-4 py-2">
+                  <img
+                    src={request[0].thumbnail}
+                    alt={request[0].postTitle}
+                    className="h-12 w-12 object-cover rounded"
+                  />
+                </td>
+                <td className="border border-gray-300 px-4 py-2">{request[0].postTitle}</td>
+                <td className="border border-gray-300 px-4 py-2">{request[0].category}</td>
+                <td className="border border-gray-300 px-4 py-2">
+                  <button
+                    onClick={() => handleCancel(request._id)}
+                    className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                  >
+                    Cancel
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+      </div>
       <h2 className="text-2xl font-bold mb-6 text-center">
         My Volunteer Need Posts
       </h2>
@@ -60,19 +117,19 @@ const MyVolunteerPosts = () => {
                     {post.category}
                   </td>
                   <td className="border border-gray-300 px-4 py-2">
-                    {new Date(post.deadline).toLocaleDateString()}
+                    {post.deadline}
                   </td>
                   <td className="border border-gray-300 px-4 py-2 flex space-x-2">
-                    <Link to={`/updatepost/${post.id}`}>
+                    <Link value={post} to={`/updatepost/${post._id}`}>
                       <button
-                        onClick={() => handleUpdate(post.id)}
+                        
                         className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
                       >
                         Update
                       </button>
                     </Link>
                     <button
-                      onClick={() => handleDelete(post.id)}
+                      onClick={() => handleDelete(post._id)}
                       className="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
                     >
                       Delete

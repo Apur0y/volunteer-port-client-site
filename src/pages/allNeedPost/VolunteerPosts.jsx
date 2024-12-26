@@ -7,7 +7,7 @@ const VolunteerPosts = () => {
   const [posts, setPosts] = useState([]);
 
   // Fetch user-specific posts
-
+console.log(posts)
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
@@ -52,7 +52,7 @@ const VolunteerPosts = () => {
               className="w-full h-40 object-cover rounded mb-4"
             />
             <h2 className="text-xl font-semibold">{post.postTitle}</h2>
-            <p className="text-gray-600">{post.description.slice(0, 100)}...</p>
+            <p className="text-gray-600">{post.description}...</p>
             <p className="text-sm text-gray-500 mt-2">
               <strong>Category:</strong> {post.category}
             </p>

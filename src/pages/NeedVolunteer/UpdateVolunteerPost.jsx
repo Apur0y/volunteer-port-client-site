@@ -1,197 +1,170 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-// import DatePicker from "react-datepicker";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
+import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import AuthContext from "../../context/AuthContext/AuthContext";
-// import toast, { Toaster } from "react-hot-toast";
+import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const UpdateVolunteerPost = ({ user }) => {
-  const { id } = useParams(); // Get post ID from route params
-  const navigate = useNavigate();
-  const [post, setPost] = useState(null);
-const {loading} = useContext(AuthContext)
+const AddVolunteerPost = () => {
+  const { postId } = useParams(); 
+  const { user } = useContext(AuthContext);
+  const [postDetails, setPostDetails] = useState(null);
+  const [formData, setFormData] = useState(null);
 
-  // Fetch the post details by ID
+  // Fetch the post details
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchPosts = async () => {
       try {
-        const response = await fetch(`/api/posts/${id}`);
-        const data = await response.json();
-        setPost(data);
+        const response = await axios.get(
+          `http://localhost:3000/postdetails/${postId}`
+        );
+        setPostDetails(response.data);
+        setFormData({
+          thumbnail: response.data.thumbnail,
+          postTitle: response.data.postTitle,
+          description: response.data.description,
+          category: response.data.category,
+          location: response.data.location,
+          volunteersNeeded: response.data.volunteersNeeded,
+          deadline: new Date(response.data.deadline),
+          userEmail: user.email,
+        });
       } catch (error) {
-       
-        // toast.error("Failed to load post data.");
-      } finally {
-     
+        console.error("Error fetching posts:", error);
       }
     };
-    fetchPost();
-  }, [id]);
+    fetchPosts();
+  }, [postId, user.email]);
 
-  // Handle form submission
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleFileChange = (e) => {
+    setFormData((prev) => ({ ...prev, thumbnail: e.target.files[0] }));
+  };
+
+  const handleDateChange = (date) => {
+    setFormData((prev) => ({ ...prev, deadline: date }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      // Replace with your API endpoint to update the post
-      const response = await fetch(`/api/posts/${id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(post),
+      const response = await axios.put(
+        `http://localhost:3000/updatepost/${postId}`,
+        formData
+      );
+      Swal.fire({
+        title: "Post Updated!",
+        text: response.data.message,
+        icon: "success",
+        confirmButtonText: "OK",
       });
-
-      if (response.ok) {
-        // toast.success("Post updated successfully!");
-        navigate("/my-posts"); // Navigate back to the user's posts page
-      } else {
-        // toast.error("Failed to update post.");
-      }
     } catch (error) {
       console.error("Error updating post:", error);
-      // toast.error("An error occurred while updating the post.");
+      Swal.fire({
+        title: "Update Failed!",
+        text: "There was an error updating your post.",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
     }
   };
 
-  if (loading) {
-    return <p>Loading post details...</p>;
-  }
-
-  if (!post) {
-    return <p>Post not found.</p>;
-  }
+  if (!formData) return <p>Loading...</p>;
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow rounded">
-      {/* <Toaster /> */}
-      <h2 className="text-2xl font-bold mb-6 text-center">Update Volunteer Post</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-          <div>
-            <label htmlFor="thumbnail" className="block text-sm font-medium text-gray-700">
-              Thumbnail URL
-            </label>
-            <input
-              type="url"
-              id="thumbnail"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200"
-              value={post.thumbnail || ""}
-              onChange={(e) => setPost({ ...post, thumbnail: e.target.value })}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="title" className="block text-sm font-medium text-gray-700">
-              Post Title
-            </label>
-            <input
-              type="text"
-              id="title"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200"
-              value={post.title || ""}
-              onChange={(e) => setPost({ ...post, title: e.target.value })}
-            />
-          </div>
-
-          <div className="sm:col-span-2">
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-              Description
-            </label>
-            <textarea
-              id="description"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200"
-              rows="4"
-              value={post.description || ""}
-              onChange={(e) => setPost({ ...post, description: e.target.value })}
-            ></textarea>
-          </div>
-
-          <div>
-            <label htmlFor="category" className="block text-sm font-medium text-gray-700">
-              Category
-            </label>
-            <select
-              id="category"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200"
-              value={post.category || ""}
-              onChange={(e) => setPost({ ...post, category: e.target.value })}
-            >
-              <option value="">Select a category</option>
-              <option value="healthcare">Healthcare</option>
-              <option value="education">Education</option>
-              <option value="social_service">Social Service</option>
-              <option value="animal_welfare">Animal Welfare</option>
-            </select>
-          </div>
-
-          <div>
-            <label htmlFor="location" className="block text-sm font-medium text-gray-700">
-              Location
-            </label>
-            <input
-              type="text"
-              id="location"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200"
-              value={post.location || ""}
-              onChange={(e) => setPost({ ...post, location: e.target.value })}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="volunteersNeeded" className="block text-sm font-medium text-gray-700">
-              No. of Volunteers Needed
-            </label>
-            <input
-              type="number"
-              id="volunteersNeeded"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200"
-              value={post.volunteersNeeded || ""}
-              onChange={(e) => setPost({ ...post, volunteersNeeded: e.target.value })}
-            />
-          </div>
-
-          <div>
-            <label htmlFor="deadline" className="block text-sm font-medium text-gray-700">
-              Deadline
-            </label>
-            {/* <DatePicker
-              selected={new Date(post.deadline) || ""}
-              onChange={(date) => setPost({ ...post, deadline: date })}
-              dateFormat="yyyy-MM-dd"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring focus:ring-indigo-200"
-            /> */}
-          </div>
+    <div className="max-w-4xl mx-auto mt-10 bg-green-400 p-6 rounded shadow">
+      <h2 className="text-2xl font-bold mb-6 text-center">Update Your Post</h2>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium">Thumbnail</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+          />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Organizer Name (Read-only)
-            </label>
-            <input
-              type="text"
-              readOnly
-              value={user.name || ""}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100"
-            />
-          </div>
+        <div>
+          <label className="block text-sm font-medium">Post Title</label>
+          <input
+            type="text"
+            name="postTitle"
+            value={formData.postTitle}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded"
+            required
+          />
+        </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Organizer Email (Read-only)
-            </label>
-            <input
-              type="email"
-              readOnly
-              value={user.email || ""}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-gray-100"
-            />
-          </div>
+        <div>
+          <label className="block text-sm font-medium">Description</label>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium">Category</label>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded"
+          >
+            <option value="healthcare">Healthcare</option>
+            <option value="education">Education</option>
+            <option value="social-service">Social Service</option>
+            <option value="animal-welfare">Animal Welfare</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium">Location</label>
+          <input
+            type="text"
+            name="location"
+            value={formData.location}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium">Volunteers Needed</label>
+          <input
+            type="number"
+            name="volunteersNeeded"
+            value={formData.volunteersNeeded}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium">Deadline</label>
+          <DatePicker
+            selected={formData.deadline}
+            onChange={handleDateChange}
+            dateFormat="yyyy-MM-dd"
+            className="w-full px-3 py-2 border rounded"
+          />
         </div>
 
         <button
           type="submit"
-          className="w-full bg-green-500 text-white py-2 rounded hover:bg-green-600 focus:outline-none"
+          className="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded hover:bg-blue-700"
         >
           Update Post
         </button>
@@ -200,5 +173,4 @@ const {loading} = useContext(AuthContext)
   );
 };
 
-export default UpdateVolunteerPost;
-
+export default AddVolunteerPost;

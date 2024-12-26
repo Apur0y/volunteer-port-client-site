@@ -35,8 +35,20 @@ const AddVolunteerPost = () => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
 
-    axios.post('http://localhost:3000/addpost',formData)
-    .then(res=>console.log(res.data))
+    axios.post('http://localhost:3000/addpost',{
+    thumbnail:formData.thumbnail,
+    postTitle:formData.postTitle,
+    description:formData.description,
+    category:formData.category ,
+    location: formData.location,
+    volunteersNeeded:formData.volunteers ,
+    deadline:formData.deadline,
+      userEmail:user.email
+    })
+    .then(res=>{
+      alert("Added your post")
+      console.log(res.data)
+    })
     
   };
 
@@ -68,6 +80,18 @@ const AddVolunteerPost = () => {
             required
           />
         </div>
+        {/* <div>
+          <label className="block text-sm font-medium">Location</label>
+          <input
+            type="text"
+            name="postTitle"
+            value={formData.postTitle}
+            onChange={handleChange}
+            placeholder="Enter post title"
+            className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-200"
+            required
+          />
+        </div> */}
 
         {/* Description */}
         <div>

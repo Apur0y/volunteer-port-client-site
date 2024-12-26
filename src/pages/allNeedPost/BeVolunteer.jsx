@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom"; // Import useParams to get params from the URL
 import axios from "axios";
+import AuthContext from "../../context/AuthContext/AuthContext";
 
-const BeVolunteer = ({ user }) => {
+const BeVolunteer = () => {
+
+  const {user} = useContext(AuthContext)
   const { postId } = useParams(); // Get postId from URL params
   const [postDetails, setPostDetails] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,17 +35,20 @@ const BeVolunteer = ({ user }) => {
       volunteerName: user.name,
       volunteerEmail: user.email,
       status: "requested",
+     
     };
 
     try {
       // Save the request to the database
-      await axios.post("/volunteer-requests", {
+     
+
+      axios.post("http://localhost:3000/requested",{
         ...requestData,
         postId: postDetails.id,
+        postDetails
       });
-
       // Decrease the number of volunteers needed
-      await axios.put(`/update-volunteers-needed/${postId}`, { count: -1 });
+      // await axios.put(`/update-volunteers-needed/${postId}`, { count: -1 });
 
       setHasVolunteered(true);
       alert("You have successfully volunteered for this post!");
