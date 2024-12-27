@@ -73,7 +73,7 @@ const AddVolunteerPost = () => {
   if (!formData) return <p>Loading...</p>;
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 bg-green-400 p-6 rounded shadow">
+    <div className="max-w-4xl mx-auto mt-10 bg-green-700 p-6 rounded shadow">
       <h2 className="text-2xl font-bold mb-6 text-center">Update Your Post</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
       <div>
@@ -83,7 +83,7 @@ const AddVolunteerPost = () => {
             name="thumbnail"
             value={formData.thumbnail}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-200"
+            className="w-full px-3 py-2 border text-black rounded focus:outline-none focus:ring focus:ring-blue-200"
             placeholder="Enter post thumbnail url"
           />
         </div>
@@ -95,7 +95,7 @@ const AddVolunteerPost = () => {
             name="postTitle"
             value={formData.postTitle}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 text-black border rounded"
             required
           />
         </div>
@@ -106,7 +106,7 @@ const AddVolunteerPost = () => {
             name="description"
             value={formData.description}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 text-black border rounded"
             required
           />
         </div>
@@ -117,7 +117,7 @@ const AddVolunteerPost = () => {
             name="category"
             value={formData.category}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 py-2 text-black border rounded"
           >
             <option value="healthcare">Healthcare</option>
             <option value="education">Education</option>
@@ -133,7 +133,7 @@ const AddVolunteerPost = () => {
             name="location"
             value={formData.location}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 text-black py-2 border rounded"
             required
           />
         </div>
@@ -145,7 +145,7 @@ const AddVolunteerPost = () => {
             name="volunteersNeeded"
             value={formData.volunteersNeeded}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded"
+            className="w-full text-black px-3 py-2 border rounded"
             required
           />
         </div>
@@ -156,7 +156,7 @@ const AddVolunteerPost = () => {
             selected={formData.deadline}
             onChange={handleDateChange}
             dateFormat="yyyy-MM-dd"
-            className="w-full px-3 py-2 border rounded"
+            className="w-full px-3 text-black py-2 border rounded"
           />
         </div>
 

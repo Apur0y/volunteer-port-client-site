@@ -54,7 +54,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen ">
       <div className="max-w-md w-full bg-white shadow-md rounded p-8">
         <h2 className="text-2xl font-bold text-center text-green-600">Login</h2>
         <form onSubmit={handleLogin} className="mt-4 space-y-4">
@@ -105,7 +105,7 @@ const Login = () => {
             Login with Google
           </button>
         </div>
-        <p className="mt-4 text-sm text-center">
+        <p className="mt-4 text-black text-sm text-center">
           Don't have an account?{" "}
           <Link to="/register" className="text-green-600 hover:underline">
             Register here

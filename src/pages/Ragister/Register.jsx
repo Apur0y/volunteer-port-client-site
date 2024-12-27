@@ -83,7 +83,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-green-50">
+    <div className="flex items-center justify-center min-h-screen ">
       <div className="grid grid-cols-1 md:grid-cols-2 max-w-4xl shadow-lg bg-white rounded-lg">
         {/* Form Section */}
         <div className="p-8">
@@ -148,7 +148,7 @@ const Register = () => {
               Register
             </button>
           </form>
-          <p className="mt-4 text-sm">
+          <p className="mt-4 text-black text-sm">
             Already have an account?{" "}
             <Link to="/login" className="text-green-600 hover:underline">
               Login here

@@ -31,7 +31,7 @@ const DonationForm = () => {
                 type="text"
                 id="name"
                 placeholder="Enter your name"
-                className="w-full border-gray-300 rounded-lg p-2 shadow-sm focus:ring-green-500 focus:border-green-500"
+                className="w-full border-gray-300 text-black rounded-lg p-2 shadow-sm focus:ring-green-500 focus:border-green-500"
               />
             </div>
             <div>
@@ -42,7 +42,7 @@ const DonationForm = () => {
                 type="email"
                 id="email"
                 placeholder="Enter your email"
-                className="w-full border-gray-300 p-2 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+                className="w-full border-gray-300 p-2 text-black rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
               />
             </div>
           </div>
@@ -55,7 +55,7 @@ const DonationForm = () => {
               type="number"
               id="amount"
               placeholder="Enter the amount"
-              className="w-full border-gray-300 p-2 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+              className="w-full border-gray-300 text-black p-2 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
               required
             />
           </div>
@@ -68,7 +68,7 @@ const DonationForm = () => {
               id="message"
               placeholder="Write a message (optional)"
               rows="4"
-              className="w-full border-gray-300 p-2 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+              className="w-full border-gray-300 p-2 text-black rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
             ></textarea>
           </div>
           {/* Payment Method */}
