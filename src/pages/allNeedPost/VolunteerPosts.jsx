@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import AuthContext from "../../context/AuthContext/AuthContext";
+import { Helmet } from "react-helmet-async";
 
 const VolunteerPosts = () => {
  
   const [posts, setPosts] = useState([]);
+  
+  const {light} = useContext(AuthContext)
+    const lightClass = light ? "bg-white" : "bg-gray-800 text-white"
 
   // Fetch user-specific posts
 console.log(posts)
@@ -28,6 +33,9 @@ console.log(posts)
 
   return (
     <div className="container mx-auto p-4">
+      <Helmet>
+        <title>All Post - Volunteer Port</title>
+      </Helmet>
       {/* Search Input */}
       <div className="mb-4">
         <input
@@ -40,7 +48,7 @@ console.log(posts)
       </div>
 
       {/* Cards Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className={`grid ${lightClass} grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6`}>
         {posts.map((post) => (
           <div
             key={post.id}
@@ -54,7 +62,7 @@ console.log(posts)
             <h2 className="text-xl font-semibold">{post.postTitle}</h2>
             <p className="text-gray-600">{post.description}...</p>
             <p className="text-sm text-gray-500 mt-2">
-              <strong>Category:</strong> {post.category}
+              <strong>Volunteers Needed:</strong> {post.volunteersNeeded}
             </p>
             <p className="text-sm text-gray-500">
               <strong>Location:</strong> {post.location}

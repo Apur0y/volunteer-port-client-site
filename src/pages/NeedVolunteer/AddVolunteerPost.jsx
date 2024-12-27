@@ -3,13 +3,14 @@ import React, { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import AuthContext from "../../context/AuthContext/AuthContext";
+import { Helmet } from "react-helmet-async";
 
 const AddVolunteerPost = () => {
 
   const {user} = useContext(AuthContext)
   console.log(user)
   const [formData, setFormData] = useState({
-    thumbnail: null,
+    thumbnail: '',
     postTitle: "",
     description: "",
     category: "healthcare",
@@ -23,9 +24,9 @@ const AddVolunteerPost = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleFileChange = (e) => {
-    setFormData((prev) => ({ ...prev, thumbnail: e.target.files[0] }));
-  };
+  // const handleFileChange = (e) => {
+  //   setFormData((prev) => ({ ...prev, thumbnail: e.target.files[0] }));
+  // };
 
   const handleDateChange = (date) => {
     setFormData((prev) => ({ ...prev, deadline: date }));
@@ -54,16 +55,21 @@ const AddVolunteerPost = () => {
 
   return (
     <div className="max-w-4xl mx-auto mt-10 bg-green-400 p-6 rounded shadow">
+       <Helmet>
+              <title>Add Post - Volunteer Post</title>
+            </Helmet>
       <h2 className="text-2xl font-bold mb-6 text-center">Add Volunteer Need Post</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Thumbnail */}
         <div>
           <label className="block text-sm font-medium">Thumbnail</label>
           <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+            type="url"
+            name="thumbnail"
+            value={formData.thumbnail}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-200"
+            placeholder="Enter post thumbnail url"
           />
         </div>
 

@@ -10,6 +10,7 @@ import MyVolunteerPosts from "../pages/NeedVolunteer/ManageVolunteer";
 import VolunteerPosts from "../pages/allNeedPost/VolunteerPosts";
 import UpdateVolunteerPost from "../pages/NeedVolunteer/UpdateVolunteerPost";
 import BeVolunteer from "../pages/allNeedPost/BeVolunteer";
+import Error from "../pages/Error";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,11 @@ const router = createBrowserRouter([
             <UpdateVolunteerPost></UpdateVolunteerPost>
           </Private>
         ),
+      },
+      {
+        path:"*",
+        element:<Error></Error>
+
       },
       {
         path: "allposts",

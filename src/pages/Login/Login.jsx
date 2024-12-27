@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { auth } from "../../firebase.init";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -24,6 +24,7 @@ const Login = () => {
     }
   };
 
+  const googleProvider = new GoogleAuthProvider
   // Handle Google Login
   const handleGoogleLogin = async () => {
     try {

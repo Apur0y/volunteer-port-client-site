@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const MyVolunteerPosts = () => {
   const { user, loading } = useContext(AuthContext);
@@ -17,7 +18,7 @@ const MyVolunteerPosts = () => {
       .then((res) => setPosts(res.data));
 
       axios
-      .get(`http://localhost:3000/userequestedpost?email=${user.email}`)
+      .get(`http://localhost:3000/userequestedpost?email=${user?.email}`)
       .then((res) => {
         setRequest(res.data); // Set the response data to state
       })
@@ -38,17 +39,20 @@ const MyVolunteerPosts = () => {
       });
   };
 
-  // const handleCancel = async(id)=>{
-  //   axios.delete(`http://localhost:3000/userequestedpost/${id}`)
-  //   .then(res=>{
-  //     console.log(res.data)
-  //     alert("Cancel post sucessful")
-  //   })
-  // }
+  const handleCancel = async(id)=>{
+    axios.delete(`http://localhost:3000/userequestedpost/${id}`)
+    .then(res=>{
+      console.log(res.data)
+      alert("Cancel post sucessful")
+    })
+  }
 
   return (
     <div className="max-w-6xl mx-auto mt-10 p-6 bg-white shadow rounded">
-      {/* <div className="">
+      <Helmet>
+        <title>Manage Post - Volunteer Post</title>
+      </Helmet>
+      <div className="">
         <div className="max-w-6xl mx-auto mt-10 p-6 bg-white shadow rounded">
           <h2 className="text-2xl font-bold mb-6 text-center">
             My Volunteer Request
@@ -80,13 +84,13 @@ const MyVolunteerPosts = () => {
                 <tbody>
                   <tr className="hover:bg-gray-50">
                     <td className="border border-gray-300 px-4 py-2">
-                      {request[0].postTitle}
+                      {request[0]?.postTitle}
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
-                      {request[0].category}
+                      {request[0]?.category}
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
-                      {request[0].deadline}
+                      {request[0]?.deadline}
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
                       <button
@@ -102,7 +106,7 @@ const MyVolunteerPosts = () => {
             </div>
           )}
         </div>
-      </div> */}
+      </div>
       <h2 className="text-2xl font-bold mb-6 text-center">
         My Volunteer Need Posts
       </h2>

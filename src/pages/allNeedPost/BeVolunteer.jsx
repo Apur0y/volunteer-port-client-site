@@ -53,8 +53,10 @@ const BeVolunteer = () => {
         volunteersNeeded:postDetails.volunteers ,
         deadline:postDetails.deadline,
       });
+      console.log(postDetails._id)
       // Decrease the number of volunteers needed
-      // await axios.put(`/update-volunteers-needed/${postId}`, { count: -1 });
+      await axios.put(`http://localhost:3000/update-volunteers-needed/${postDetails._id}`, { count: -1 });
+
 
       setHasVolunteered(true);
       alert("You have successfully volunteered for this post!");
