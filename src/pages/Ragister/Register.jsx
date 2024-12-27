@@ -29,6 +29,10 @@ const Register = () => {
     const hasLowercase = /[a-z]/.test(password);
     const isLongEnough = password.length >= 6;
 
+    if (!isLongEnough) {
+      toast.error("Password must be at least 6 characters long.");
+      return false;
+    }
     if (!hasUppercase) {
       toast.error("Password must contain at least one uppercase letter.");
       return false;
@@ -37,10 +41,7 @@ const Register = () => {
       toast.error("Password must contain at least one lowercase letter.");
       return false;
     }
-    if (!isLongEnough) {
-      toast.error("Password must be at least 6 characters long.");
-      return false;
-    }
+
     return true;
   };
 
@@ -51,6 +52,9 @@ const Register = () => {
     if (!name || !email || !photoURL || !password) {
       toast.error("All fields are required.");
       return;
+    }
+    if (!validatePassword(password)) {
+      return; // Don't proceed if the password is invalid
     }
 
     userSignUp(email,password)
