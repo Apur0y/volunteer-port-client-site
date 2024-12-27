@@ -2,7 +2,7 @@ import React from 'react';
 
 const Description = () => {
     return (
-        <section className="bg-gray-100 py-10 px-5">
+        <section className="bg-emerald-900 rounded-lg py-10 px-5">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8">
           {/* Left Side - Image */}
           <div className="flex-shrink-0 md:w-1/2">
@@ -15,16 +15,16 @@ const Description = () => {
   
           {/* Right Side - Text */}
           <div className="md:w-1/2">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">
+            <h2 className="text-3xl font-bold text-white mb-4">
               Make a Difference Through Volunteering
             </h2>
-            <p className="text-gray-600 text-lg mb-6">
+            <p className="text-white text-lg mb-6">
               Volunteering is a powerful way to give back to your community while
               gaining new skills and experiences. By dedicating your time and
               efforts, you can create a positive impact on the lives of others
               and inspire change.
             </p>
-            <p className="text-gray-600 text-lg">
+            <p className="text-white text-lg">
               Join our mission to support meaningful causes, connect with people
               from diverse backgrounds, and be a part of something bigger. Every
               small action makes a big difference.

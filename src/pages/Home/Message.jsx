@@ -1,63 +1,114 @@
-import React from 'react';
+import React from "react";
+import Swal from "sweetalert2";
 
-const Message = () => {
-    return (
-        <section className="py-10 px-5">
-        <div className="max-w-4xl mx-auto rounded-lg shadow-lg p-6">
-          <h2 className="text-2xl font-semibold  text-center mb-4">
-            Send Us a Message
-          </h2>
-          <p className="text-gray-600 text-center mb-8">
-            Have questions? Fill out the form below, and we’ll get back to you as soon as possible.
-          </p>
-          <form className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div>
-                <label className="block  font-medium mb-2" htmlFor="name">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  placeholder="Enter your name"
-                  className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-              <div>
-                <label className="block  font-medium mb-2" htmlFor="email">
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="Enter your email"
-                  className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
+const DonationForm = () => {
+  const handleDonate=(event)=>{
+    event.preventDefault();
+    Swal.fire({
+             title: "Donated!",
+             text: "Your file has been deleted.",
+             icon: "success"
+           }); 
+  }
+  return (
+    <section className="py-12 px-5 ">
+      <div className="max-w-4xl mx-auto bg-green-900 rounded-lg shadow-lg p-8">
+        <h2 className="text-3xl font-bold text-center text-white mb-6">
+          Donate to Support Our Cause
+        </h2>
+        <p className="text-white text-center mb-8">
+          Your contributions help us make a meaningful impact. Fill out the form
+          below to donate securely.
+        </p>
+        <form onSubmit={handleDonate} className="space-y-6">
+          {/* Name and Email Fields */}
+          <div className="grid grid-cols-1 text-white md:grid-cols-2 gap-6">
+            <div>
+              <label className="block font-medium mb-2" htmlFor="name">
+                Your Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                className="w-full border-gray-300 rounded-lg p-2 shadow-sm focus:ring-green-500 focus:border-green-500"
+              />
             </div>
             <div>
-              <label className="block  font-medium mb-2" htmlFor="message">
-                Your Message
+              <label className="block font-medium mb-2" htmlFor="email">
+                Your Email
               </label>
-              <textarea
-                id="message"
-                placeholder="Write your message here"
-                rows="5"
-                className="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              ></textarea>
+              <input
+                type="email"
+                id="email"
+                placeholder="Enter your email"
+                className="w-full border-gray-300 p-2 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+              />
             </div>
-            <div className="text-center">
-              <button
-                type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
-              >
-                Send Message
-              </button>
+          </div>
+          {/* Donation Amount */}
+          <div>
+            <label className="block font-medium text-white mb-2" htmlFor="amount">
+              Donation Amount (USD)
+            </label>
+            <input
+              type="number"
+              id="amount"
+              placeholder="Enter the amount"
+              className="w-full border-gray-300 p-2 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+              required
+            />
+          </div>
+          {/* Message */}
+          <div>
+            <label className="block text-white font-medium  mb-2" htmlFor="message">
+              Your Message (Optional)
+            </label>
+            <textarea
+              id="message"
+              placeholder="Write a message (optional)"
+              rows="4"
+              className="w-full border-gray-300 p-2 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500"
+            ></textarea>
+          </div>
+          {/* Payment Method */}
+          <div>
+            <label className="block font-medium text-white mb-2">Payment Method</label>
+            <div className="flex items-center text-white gap-4">
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="payment"
+                  value="credit_card"
+                  className="text-white  focus:ring-green-500"
+                  required
+                />
+                Credit Card
+              </label>
+              <label className="flex items-center gap-2">
+                <input
+                  type="radio"
+                  name="payment"
+                  value="paypal"
+                  className="text-white focus:ring-green-500"
+                />
+                PayPal
+              </label>
             </div>
-          </form>
-        </div>
-      </section>
-    );
+          </div>
+          {/* Submit Button */}
+          <div className="text-center">
+            <button
+           
+              className="bg-green-600 text-white px-6 py-3 text-lg font-semibold rounded hover:bg-green-700 transition"
+            >
+              Donate Now
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
 };
 
-export default Message;
+export default DonationForm;

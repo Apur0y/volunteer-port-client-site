@@ -1,17 +1,18 @@
 import axios from "axios";
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const VolunteerNeed = () => {
   const [posts, setPosts] = useState([]);
-  console.log(posts);
 
   // Fetch user-specific posts
   useEffect(() => {
     axios
       .get("http://localhost:3000/allposts")
-      .then((res) => setPosts(res.data));
+      .then((res) => setPosts(res.data))
+      .catch((error) => console.error("Error fetching posts:", error));
   }, []);
+
   const sortedPosts = posts
     .sort((a, b) => new Date(a.deadline) - new Date(b.deadline))
     .slice(0, 6);
@@ -21,40 +22,52 @@ const VolunteerNeed = () => {
   const handleViewDetails = (postId) => {
     navigate(`/viewdetails/${postId}`);
   };
+
   return (
-    <div className="my-8">
-      <h2 className="text-2xl font-bold text-center text-green-600">
+    <div className="my-8  p-6 rounded shadow-lg">
+      <h2 className="text-3xl font-extrabold text-center border-b-2 text-green-800 mb-6">
         Volunteer Needs Now
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {sortedPosts.map((post) => (
-          <div key={post?.id} className="border rounded shadow-md p-4">
+          <div
+            key={post?._id}
+            className="bg-green-900 border border-green-200 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+          >
             <img
-              src={post?.thumbnail}
+              src={post?.thumbnail || "https://img.freepik.com/free-photo/helping-hands-volunteer-support-community-service-graphic_53876-64955.jpg?semt=ais_hybrid"}
               alt={post?.title}
-              className="w-full h-40 object-cover rounded"
+              className="w-full h-48 object-cover rounded-t-lg"
             />
-            <h3 className="mt-2 text-lg font-bold">{post?.title}</h3>
-            <p className="text-sm text-gray-500">{post?.category}</p>
-            <p className="text-sm text-red-500">Deadline: {post?.deadline}</p>
-            <button
-              onClick={() => handleViewDetails(post?._id)}
-              className="mt-2 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
-            >
-              View Details
-            </button>
+            <div className="p-4">
+              <h3 className="text-xl font-bold text-white">
+                {post?.postTitle}
+              </h3>
+              <p className="text-sm text-white mt-1">
+                <strong>Category:</strong> {post?.category}
+              </p>
+              <p className="text-sm text-red-500 mt-1">
+                <strong>Deadline:</strong> {post?.deadline}
+              </p>
+              <button
+                onClick={() => handleViewDetails(post?._id)}
+                className="mt-4 w-full px-4 py-2 bg-green-700 text-white font-semibold rounded hover:bg-green-800 transition duration-300"
+              >
+                View Details
+              </button>
+            </div>
           </div>
         ))}
       </div>
-      <Link to='/allposts'>
-      <div className="text-center mt-4">
-        <button className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
-          See All
-        </button>
+      <div className="text-center mt-6">
+        <Link to="/allposts">
+          <button className="px-8 py-3 bg-green-700 text-white text-lg font-semibold rounded hover:bg-green-800 transition duration-300">
+            See All
+          </button>
+        </Link>
       </div>
-      </Link>
     </div>
   );
 };
 
-export default VolunteerNeed;
+export default VolunteerNeed;

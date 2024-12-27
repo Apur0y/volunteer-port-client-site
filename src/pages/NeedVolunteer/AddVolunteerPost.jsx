@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const AddVolunteerPost = () => {
 
@@ -47,14 +48,17 @@ const AddVolunteerPost = () => {
       userEmail:user.email
     })
     .then(res=>{
-      alert("Added your post")
-      console.log(res.data)
+    Swal.fire({
+                title: "Post Added!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              }); 
     })
     
   };
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 bg-green-400 p-6 rounded shadow">
+    <div className="max-w-4xl mx-auto mt-10 bg-green-600 p-6 rounded shadow">
        <Helmet>
               <title>Add Post - Volunteer Post</title>
             </Helmet>
@@ -86,18 +90,7 @@ const AddVolunteerPost = () => {
             required
           />
         </div>
-        {/* <div>
-          <label className="block text-sm font-medium">Location</label>
-          <input
-            type="text"
-            name="postTitle"
-            value={formData.postTitle}
-            onChange={handleChange}
-            placeholder="Enter post title"
-            className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-200"
-            required
-          />
-        </div> */}
+       
 
         {/* Description */}
         <div>

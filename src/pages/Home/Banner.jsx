@@ -21,7 +21,7 @@ const Banner = () => {
             "url('https://factsmgt.com/wp-content/uploads/5-Benefits-of-Volunteering-at-Your-Childrens-School.jpg')",
         }}
       >
-        <div className="bg-black bg-opacity-50 mx-auto p-8 top-1/2 rounded-lg w-full lg:w-1/2">
+        <div className="bg-black bg-opacity-50 mx-auto p-8 mt-28 top-1/2 rounded-lg w-full lg:w-1/2">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
             Join Us in Making a Difference
           </h2>
@@ -42,7 +42,7 @@ const Banner = () => {
             "url('https://es.statefarm.com/content/dam/sf-library/en-us/secure/legacy/simple-insights/volunteer-at-a-school.jpg')",
         }}
       >
-        <div className="bg-black bg-opacity-50 mx-auto p-8 rounded-lg w-full  lg:w-1/2 text-center">
+        <div className="bg-black bg-opacity-50 mt-28 mx-auto p-8 rounded-lg w-full  lg:w-1/2 text-center">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
             Your Help Matters
           </h2>
@@ -63,7 +63,7 @@ const Banner = () => {
             "url('https://www.stollerykids.com/content/uploads/2022/07/CubCinema_volunteers.jpg')",
         }}
       >
-        <div className="bg-black bg-opacity-50 mx-auto p-8 rounded-lg w-full lg:w-1/2">
+        <div className="bg-black bg-opacity-50 mt-28 mx-auto p-8 rounded-lg w-full lg:w-1/2">
           <h2 className="text-4xl lg:text-5xl font-bold mb-4">
             Make a Positive Impact
           </h2>

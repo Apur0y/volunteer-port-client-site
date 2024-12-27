@@ -49,11 +49,7 @@ const MyVolunteerPosts = () => {
         .catch((err) => {
           console.error("Error deleting post:", err);
         });
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        });
+        
       }
     });
 
@@ -70,13 +66,13 @@ const MyVolunteerPosts = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto mt-10 p-6 bg-white shadow rounded">
+    <div className="max-w-6xl mx-auto mt-10 p-6 shadow rounded">
       <Helmet>
         <title>Manage Post - Volunteer Post</title>
       </Helmet>
       <div className="">
-        <div className="max-w-6xl mx-auto mt-10 p-6 bg-white shadow rounded">
-          <h2 className="text-2xl font-bold mb-6 text-center">
+        <div className="max-w-6xl  mx-auto mt-10 p-6 shadow rounded">
+          <h2 className="text-2xl border-b-2  font-bold mb-6 text-center">
             My Volunteer Request
           </h2>
 
@@ -88,7 +84,7 @@ const MyVolunteerPosts = () => {
             <div className="overflow-x-auto">
               <table className="w-full border-collapse border border-gray-300">
                 <thead>
-                  <tr className="bg-gray-100">
+                  <tr className=" ">
                     <th className="border border-gray-300 px-4 py-2">
                     Post Title
                     </th>
@@ -106,7 +102,7 @@ const MyVolunteerPosts = () => {
                 <tbody>
                   {
                     request.map((request)=>(
-                      <tr className="hover:bg-gray-50">
+                      <tr className="hover:bg-green-800">
                     <td className="border border-gray-300 px-4 py-2">
                       {request?.postTitle}
                     </td>
@@ -133,7 +129,7 @@ const MyVolunteerPosts = () => {
           )}
         </div>
       </div>
-      <h2 className="text-2xl font-bold mb-6 text-center">
+      <h2 className="text-2xl font-bold mb-6 border-b-2 text-center">
         My Volunteer Need Posts
       </h2>
 
@@ -147,7 +143,7 @@ const MyVolunteerPosts = () => {
         <div className="overflow-x-auto">
           <table className="w-full border-collapse border border-gray-300">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="">
                 <th className="border border-gray-300 px-4 py-2">Post Title</th>
                 <th className="border border-gray-300 px-4 py-2">Category</th>
                 <th className="border border-gray-300 px-4 py-2">Deadline</th>
@@ -156,7 +152,7 @@ const MyVolunteerPosts = () => {
             </thead>
             <tbody>
               {posts.map((post) => (
-                <tr key={post.id} className="hover:bg-gray-50">
+                <tr key={post.id} className="hover:bg-green-800">
                   <td className="border border-gray-300 px-4 py-2">
                     {post.postTitle}
                   </td>
@@ -168,7 +164,7 @@ const MyVolunteerPosts = () => {
                   </td>
                   <td className="border border-gray-300 px-4 py-2 flex space-x-2">
                     <Link value={post} to={`/updatepost/${post._id}`}>
-                      <button className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                      <button className="px-3 py-1 bg-emerald-600 text-white rounded hover:bg-blue-600">
                         Update
                       </button>
                     </Link>

@@ -14,15 +14,16 @@ const Home = () => {
     const lightClass = light ? "bg-white" : "bg-gray-800 text-white"
 
     return (
-        <div className={`${lightClass}`}>
+        <div className={`${lightClass} w-11/12 mx-auto`}>
           <Helmet>
           <title>Home - Volunteer Port</title>
           <meta name="description" content="Welcome to Volunteer Port Home Page" />
           </Helmet>
           <Banner></Banner>
           <VolunteerNeed></VolunteerNeed>
+          <Description></Description>
             <Message></Message>
-            <Description></Description>
+         
         </div>
     );
 };

@@ -37,7 +37,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[30] top-10 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-slate-500 text-white rounded-box z-[30] top-10 w-52 p-2 shadow"
           >
             <li>
               <Link to="/needvolunteer">Add Volunteer Need Post</Link>
@@ -94,7 +94,7 @@ const Navbar = () => {
       <div>
         <div>
           <button
-            className="hover:bg-blue-200 p-3 rounded-full"
+            className="hover:bg-blue-200 p-3 ml-20 md:ml-1 rounded-full"
             onClick={handleLight}
             aria-label={light ? "Switch to dark mode" : "Switch to light mode"}
           >
