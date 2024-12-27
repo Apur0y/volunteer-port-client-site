@@ -15,7 +15,7 @@ const AddVolunteerPost = () => {
     description: "",
     category: "healthcare",
     location: "",
-    volunteersNeeded: "",
+    volunteersNeeded: null,
     deadline: new Date(),
   });
 
@@ -42,7 +42,7 @@ const AddVolunteerPost = () => {
     description:formData.description,
     category:formData.category ,
     location: formData.location,
-    volunteersNeeded:formData.volunteers ,
+    volunteersNeeded: Number(formData.volunteersNeeded) ,
     deadline:formData.deadline,
       userEmail:user.email
     })

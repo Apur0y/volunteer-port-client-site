@@ -35,36 +35,48 @@ const BeVolunteer = () => {
       volunteerName: user.name,
       volunteerEmail: user.email,
       status: "requested",
-     
     };
-
+  
     try {
-      // Save the request to the database
-     
-
-      axios.post("http://localhost:3000/requested",{
+      // Step 1: Create the requested post in the database
+      const response = await axios.post("http://localhost:3000/requested", {
         ...requestData,
         postId: postDetails.id,
-        thumbnail:postDetails.thumbnail,
-        postTitle:postDetails.postTitle,
-        description:postDetails.description,
-        category:postDetails.category ,
+        thumbnail: postDetails.thumbnail,
+        postTitle: postDetails.postTitle,
+        description: postDetails.description,
+        category: postDetails.category,
         location: postDetails.location,
-        volunteersNeeded:postDetails.volunteers ,
-        deadline:postDetails.deadline,
+        volunteersNeeded: postDetails.volunteers,
+        deadline: postDetails.deadline,
       });
-      console.log(postDetails._id)
-      // Decrease the number of volunteers needed
-      await axios.put(`http://localhost:3000/update-volunteers-needed/${postDetails._id}`, { count: -1 });
-
-
-      setHasVolunteered(true);
-      alert("You have successfully volunteered for this post!");
+  console.log(response);
+      // Check if the post creation is successful
+      if (response.status === 200) {
+        console.log("Post request created successfully");
+  alert("Post request created successfully")
+        // Step 2: After creating the post, decrement the volunteers needed
+         axios.put(
+          `http://localhost:3000/updatecount/${postDetails._id}`,
+          { count: -1 }
+        );}
+  
+      //   // Check if the volunteer count was updated successfully
+      //   if (updateResponse.status === 200) {
+      //     setHasVolunteered(true);
+      //     alert("You have successfully volunteered for this post!");
+      //   } else {
+      //     alert("Failed to update volunteer count.");
+      //   }
+      // } else {
+      //   alert("Failed to create request post.");
+      // }
     } catch (error) {
       console.error("Error submitting request:", error);
       alert("Failed to volunteer.");
     }
   };
+  
 
   return (
     <div className="volunteer-container">
