@@ -1,39 +1,56 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { auth } from "../../firebase.init";
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import axios from "axios";
+import AuthContext from "../../context/AuthContext/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+  const { userLogin } = useContext(AuthContext);
   // Handle Email/Password Login
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      toast.success("Login Successful!");
-      navigate("/"); // Redirect to homepage or dashboard
-    } catch (error) {
-      toast.error(error.message || "Login Failed!");
-    }
+    userLogin(email, password)
+      .then((result) => {
+        navigate("/");
+        toast.success("Login Successful!");
+        const user = { email: result.user.email };
+        axios
+          .post("http://localhost:3000/jwt", user, { withCredentials: true })
+          .then((res) => console.log(res.data));
+      })
+
+      .catch((error) => {
+        toast.error(error.message || "Login Failed!");
+      });
   };
 
-  const googleProvider = new GoogleAuthProvider
+  const googleProvider = new GoogleAuthProvider();
   // Handle Google Login
   const handleGoogleLogin = async () => {
-    try {
-      await signInWithPopup(auth, googleProvider);
-      toast.success("Login Successful!");
-      navigate("/"); // Redirect to homepage or dashboard
-    } catch (error) {
-      toast.error(error.message || "Login Failed!");
-    }
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        navigate("/");
+        toast.success("Login Successful!");
+        const user = { email: result.user.email };
+        axios
+          .post("http://localhost:3000/jwt", user, { withCredentials: true })
+          .then((res) => console.log(res.data));
+      })
+      .catch((error) => {
+        toast.error(error.message || "Login Failed!");
+      });
   };
 
   return (
@@ -42,7 +59,10 @@ const Login = () => {
         <h2 className="text-2xl font-bold text-center text-green-600">Login</h2>
         <form onSubmit={handleLogin} className="mt-4 space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700"
+            >
               Email
             </label>
             <input
@@ -55,7 +75,10 @@ const Login = () => {
             />
           </div>
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
               Password
             </label>
             <input

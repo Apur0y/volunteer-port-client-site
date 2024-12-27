@@ -58,7 +58,7 @@ const AddVolunteerPost = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 bg-green-600 p-6 rounded shadow">
+    <div className="max-w-4xl mx-auto mt-10 bg-green-800 p-6 rounded shadow">
        <Helmet>
               <title>Add Post - Volunteer Post</title>
             </Helmet>

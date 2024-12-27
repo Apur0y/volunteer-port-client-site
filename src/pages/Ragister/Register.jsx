@@ -6,6 +6,7 @@ import Lottie from "lottie-react";
 import animationData from "../../assets/Lottie/register.json"
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext/AuthContext";
+import axios from "axios";
 
 const Register = () => {
 
@@ -59,7 +60,11 @@ const Register = () => {
 
     userSignUp(email,password)
     .then(res=>{
-      console.log(res)
+      console.log(res.user.email);
+      const user = {email: res.user.email}
+      axios.post('http://localhost:3000/jwt',user,{withCredentials:true})
+      .then(res=>console.log(res.data))
+
       updateUserProfile({ displayName: name, photoURL: photoURL })
       navigate('/')
       Swal.fire({
