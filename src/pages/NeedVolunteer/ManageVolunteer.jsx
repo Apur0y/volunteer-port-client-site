@@ -3,6 +3,7 @@ import AuthContext from "../../context/AuthContext/AuthContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const MyVolunteerPosts = () => {
   const { user, loading } = useContext(AuthContext);
@@ -26,24 +27,45 @@ const MyVolunteerPosts = () => {
 
   // Handle delete post
   const handleDelete = async (id) => {
-    axios
-      .delete(`http://localhost:3000/updatepost/${id}`) // Corrected endpoint
-      .then((res) => {
-        alert("Delete complete");
-        console.log("Deleted:", res.data);
-        // Optional: Update the posts state to remove the deleted post
-        setPosts((prevPosts) => prevPosts.filter((post) => post._id !== id));
-      })
-      .catch((err) => {
-        console.error("Error deleting post:", err);
-      });
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+        .delete(`http://localhost:3000/updatepost/${id}`) // Corrected endpoint
+        .then((res) => {
+      
+          console.log("Deleted:", res.data);
+          // Optional: Update the posts state to remove the deleted post
+          setPosts((prevPosts) => prevPosts.filter((post) => post._id !== id));
+        })
+        .catch((err) => {
+          console.error("Error deleting post:", err);
+        });
+        Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success"
+        });
+      }
+    });
+
+
   };
 
   const handleCancel = async(id)=>{
     axios.delete(`http://localhost:3000/userequestedpost/${id}`)
     .then(res=>{
       console.log(res.data)
-      alert("Cancel post sucessful")
+      alert("Cancel post sucessfull")
+      setRequest((prevPosts) => prevPosts.filter((post) => post._id !== id));
     })
   }
 
@@ -82,15 +104,17 @@ const MyVolunteerPosts = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="hover:bg-gray-50">
+                  {
+                    request.map((request)=>(
+                      <tr className="hover:bg-gray-50">
                     <td className="border border-gray-300 px-4 py-2">
-                      {request[0]?.postTitle}
+                      {request?.postTitle}
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
-                      {request[0]?.category}
+                      {request?.category}
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
-                      {request[0]?.deadline}
+                      {request?.deadline}
                     </td>
                     <td className="border border-gray-300 px-4 py-2">
                       <button
@@ -101,6 +125,8 @@ const MyVolunteerPosts = () => {
                       </button>
                     </td>
                   </tr>
+                    ))
+                  }
                 </tbody>
               </table>
             </div>

@@ -2,10 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom"; // Import useParams to get params from the URL
 import axios from "axios";
 import AuthContext from "../../context/AuthContext/AuthContext";
+import { toast, ToastContainer } from "react-toastify";
 
 const BeVolunteer = () => {
-
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   const { postId } = useParams(); // Get postId from URL params
   const [postDetails, setPostDetails] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -36,7 +36,7 @@ const BeVolunteer = () => {
       volunteerEmail: user.email,
       status: "requested",
     };
-  
+
     try {
       // Step 1: Create the requested post in the database
       const response = await axios.post("http://localhost:3000/requested", {
@@ -47,36 +47,33 @@ const BeVolunteer = () => {
         description: postDetails.description,
         category: postDetails.category,
         location: postDetails.location,
-        volunteersNeeded: postDetails.volunteers,
+        volunteersNeeded: postDetails.volunteersNeeded,
         deadline: postDetails.deadline,
       });
-  console.log(response);
+      console.log(postDetails.volunteersNeeded);
       // Check if the post creation is successful
-      if (response.status === 200) {
+      if (response.status === 200 && postDetails.volunteersNeeded >0 ) {
         console.log("Post request created successfully");
-  alert("Post request created successfully")
+        alert("Post request created successfully");
         // Step 2: After creating the post, decrement the volunteers needed
-         axios.put(
-          `http://localhost:3000/updatecount/${postDetails._id}`,
-          { count: -1 }
-        );}
-  
-      //   // Check if the volunteer count was updated successfully
-      //   if (updateResponse.status === 200) {
-      //     setHasVolunteered(true);
-      //     alert("You have successfully volunteered for this post!");
-      //   } else {
-      //     alert("Failed to update volunteer count.");
-      //   }
-      // } else {
-      //   alert("Failed to create request post.");
-      // }
+        axios.put(`http://localhost:3000/updatecount/${postDetails._id}`, {
+          count: -1,
+        });
+        setHasVolunteered(true)
+      }
+      else{
+        toast("Volunteer Full !!!")
+      }
     } catch (error) {
       console.error("Error submitting request:", error);
       alert("Failed to volunteer.");
     }
   };
-  
+
+
+  // if(postDetails.volunteersNeeded <=0 ){
+  //   setHasVolunteered(true)
+  // }
 
   return (
     <div className="volunteer-container">
@@ -186,8 +183,14 @@ const BeVolunteer = () => {
               </button>
             )}
           </div>
+          <div>
+            {
+              postDetails.volunteersNeeded ==0 ?( <p className="text-red-600 font-semibold">Currently no need any Volunteer!</p>):(<></>)
+            }
+          </div>
         </>
       )}
+      <ToastContainer></ToastContainer>
     </div>
   );
 };

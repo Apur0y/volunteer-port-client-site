@@ -39,11 +39,7 @@ const AddVolunteerPost = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleFileChange = (e) => {
-    setFormData((prev) => ({ ...prev, thumbnail: e.target.files[0] }));
+    setFormData((prev) => ({ ...prev,  [name]: name === "volunteersNeeded" ? Number(value) : value }));
   };
 
   const handleDateChange = (date) => {
@@ -80,13 +76,15 @@ const AddVolunteerPost = () => {
     <div className="max-w-4xl mx-auto mt-10 bg-green-400 p-6 rounded shadow">
       <h2 className="text-2xl font-bold mb-6 text-center">Update Your Post</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
+      <div>
           <label className="block text-sm font-medium">Thumbnail</label>
           <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+            type="url"
+            name="thumbnail"
+            value={formData.thumbnail}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded focus:outline-none focus:ring focus:ring-blue-200"
+            placeholder="Enter post thumbnail url"
           />
         </div>
 

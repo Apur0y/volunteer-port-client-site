@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const VolunteerNeed = () => {
   const [posts, setPosts] = useState([]);
@@ -46,11 +46,13 @@ const VolunteerNeed = () => {
           </div>
         ))}
       </div>
+      <Link to='/allposts'>
       <div className="text-center mt-4">
         <button className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
           See All
         </button>
       </div>
+      </Link>
     </div>
   );
 };
