@@ -18,42 +18,48 @@ const VolunteerPosts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/allposts?search=${encodeURIComponent(
-            searchQuery
-          )}`
-        );
+        const response = await axios.get("http://localhost:3000/allposts");
         setPosts(response.data);
       } catch (error) {
         console.error("Error fetching posts:", error);
       }
     };
     fetchPosts();
-  }, [searchQuery]);
+  }, []);
+console.log(searchQuery);
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3000/search?title=${encodeURIComponent(searchQuery)}`
+      );
+      setPosts(response.data);
+    } catch (error) {
+      console.error("Error searching posts:", error);
+    }
+  };
 
-  // const handleSearch = async () => {
-  //   try {
-  //     const res = await axios.get(`http://localhost:3000/search?title=${searchQuery}`);
-  //     setResults(res.data);
-  //   } catch (error) {
-  //     console.error("Error searching posts:", error);
-  //   }
-  // };
   return (
     <div className="container mx-auto p-4">
       <Helmet>
         <title>All Post - Volunteer Port</title>
       </Helmet>
       {/* Search Input */}
-      <div className="mb-4">
+      <div className="mb-4 flex gap-2 items-center">
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search by Post Title"
-          className="border p-2 w-full md:w-1/2 rounded"
+          className="border p-2 text-black w-full md:w-1/2 rounded"
         />
+        <button
+          onClick={handleSearch}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+        >
+          Search
+        </button>
       </div>
+
 
       <div className="flex justify-between py-2">
         <div></div>
