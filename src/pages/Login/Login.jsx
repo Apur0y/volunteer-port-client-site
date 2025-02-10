@@ -27,7 +27,7 @@ const Login = () => {
         toast.success("Login Successful!");
         const user = { email: result.user.email };
         axios
-          .post("http://localhost:3000/jwt", user, { withCredentials: true })
+          .post("https://volunteer-back.vercel.app/jwt", user, { withCredentials: true })
           .then((res) => console.log(res.data));
       })
 
@@ -45,7 +45,7 @@ const Login = () => {
         toast.success("Login Successful!");
         const user = { email: result.user.email };
         axios
-          .post("http://localhost:3000/jwt", user, { withCredentials: true })
+          .post("https://volunteer-back.vercel.app/jwt", user, { withCredentials: true })
           .then((res) => console.log(res.data));
       })
       .catch((error) => {

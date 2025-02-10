@@ -60,9 +60,9 @@ const Register = () => {
 
     userSignUp(email,password)
     .then(res=>{
-      console.log(res.user.email);
+     
       const user = {email: res.user.email}
-      axios.post('http://localhost:3000/jwt',user,{withCredentials:true})
+      axios.post('https://volunteer-back.vercel.app/jwt',user,{withCredentials:true})
       .then(res=>console.log(res.data))
 
       updateUserProfile({ displayName: name, photoURL: photoURL })

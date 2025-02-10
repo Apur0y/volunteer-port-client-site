@@ -17,7 +17,7 @@ const AddVolunteerPost = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/postdetails/${postId}`
+          `https://volunteer-back.vercel.app/postdetails/${postId}`
         );
         setPostDetails(response.data);
         setFormData({
@@ -50,7 +50,7 @@ const AddVolunteerPost = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:3000/updatepost/${postId}`,
+        `https://volunteer-back.vercel.app/updatepost/${postId}`,
         formData
       );
       Swal.fire({

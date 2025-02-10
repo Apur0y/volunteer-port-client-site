@@ -18,7 +18,7 @@ const BeVolunteer = () => {
     const fetchPostDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/postdetails/${postId}`
+          `https://volunteer-back.vercel.app/postdetails/${postId}`
         );
         setPostDetails(response.data);
       } catch (err) {
@@ -43,8 +43,10 @@ const BeVolunteer = () => {
       status: "requested",
     };
 
+  postDetails.prevId= postDetails._id;
+  delete postDetails._id
     try {
-      const response = await axios.post("http://localhost:3000/requested", {
+      const response = await axios.post("https://volunteer-back.vercel.app/requested", {
         ...requestData,
         postId: postDetails.id,
         ...postDetails,
@@ -52,7 +54,7 @@ const BeVolunteer = () => {
 
       if (response.status === 200) {
         await axios.put(
-          `http://localhost:3000/updatecount/${postDetails._id}`,
+          `https://volunteer-back.vercel.app/updatecount/${postDetails.prevId}`,
           { count: -1 }
         );
         setHasVolunteered(true);

@@ -12,7 +12,7 @@ const MainLayout = () => {
     return (
         <div className={` mx-auto ${lightClass}`}>
             <Navbar></Navbar>
-            <div className="my-8">
+            <div className="">
             <Outlet></Outlet>
             </div>
             

@@ -10,16 +10,15 @@ const MyVolunteerPosts = () => {
 
   const [posts, setPosts] = useState([]);
   const [request, setRequest] = useState([]);
-  console.log(posts);
-  console.log(request);
+
   // Fetch user-specific posts
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/userposts?email=${user?.email}`)
+      .get(`https://volunteer-back.vercel.app/userposts?email=${user?.email}`)
       .then((res) => setPosts(res.data));
 
       axios
-      .get(`http://localhost:3000/userequestedpost?email=${user?.email}`)
+      .get(`https://volunteer-back.vercel.app/userequestedpost?email=${user?.email}`)
       .then((res) => {
         setRequest(res.data); // Set the response data to state
       })
@@ -39,10 +38,10 @@ const MyVolunteerPosts = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-        .delete(`http://localhost:3000/updatepost/${id}`) // Corrected endpoint
+        .delete(`https://volunteer-back.vercel.app/updatepost/${id}`) // Corrected endpoint
         .then((res) => {
       
-          console.log("Deleted:", res.data);
+        
           // Optional: Update the posts state to remove the deleted post
           setPosts((prevPosts) => prevPosts.filter((post) => post._id !== id));
         })
@@ -57,9 +56,9 @@ const MyVolunteerPosts = () => {
   };
 
   const handleCancel = async(id)=>{
-    axios.delete(`http://localhost:3000/userequestedpost/${id}`)
+    axios.delete(`https://volunteer-back.vercel.app/userequestedpost/${id}`)
     .then(res=>{
-      console.log(res.data)
+      
       alert("Cancel post sucessfull")
       setRequest((prevPosts) => prevPosts.filter((post) => post._id !== id));
     })

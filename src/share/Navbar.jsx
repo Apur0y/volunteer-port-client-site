@@ -20,11 +20,10 @@ const Navbar = () => {
     userSignOut();
   };
 
-  const lightClass = light ? "bg-white" : "bg-gray-800 text-white";
 
   const links = (
     <>
-      <li>
+      <li className="text-white">
         <Link to="/">Home</Link>
       </li>
       <li>
@@ -52,7 +51,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className={`${lightClass} navbar border-b-2`}>
+    <div className={`bg-transparent px-12 fixed z-40  navbar `}>
       <div className="navbar-start">
         <div className="dropdown">
           <div
@@ -79,27 +78,27 @@ const Navbar = () => {
           {isOpen && (
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[30] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content text-white  rounded-box z-[30] mt-3 w-52 p-2 shadow"
             >
               {links}
             </ul>
           )}
         </div>
         <img src="/sidelogo.png" alt="" className="w-10" />
-        <a className="btn btn-ghost text-xl">Volunteer Port</a>
+        <a className="btn btn-ghost text-white text-xl">Volunteer Port</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{links}</ul>
+        <ul className="menu text-white menu-horizontal px-1">{links}</ul>
       </div>
       <div>
         <div>
-          <button
+          {/* <button
             className="hover:bg-blue-200 p-3 ml-20 md:ml-1 rounded-full"
             onClick={handleLight}
-            aria-label={light ? "Switch to dark mode" : "Switch to light mode"}
+          
           >
             {light ? <MdDarkMode /> : <CiLight />}
-          </button>
+          </button> */}
         </div>
       </div>
       <div className="navbar-end">

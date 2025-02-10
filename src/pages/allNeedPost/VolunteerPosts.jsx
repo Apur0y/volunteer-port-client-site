@@ -14,32 +14,29 @@ const VolunteerPosts = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
+  const fetchPosts = async () => {
+    try {
+      const response = await axios.get(`https://volunteer-back.vercel.app/allposts?title=${searchQuery}`);
+      setPosts(response.data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  };
   // Fetch posts from the backend
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await axios.get("http://localhost:3000/allposts");
-        setPosts(response.data);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
-    };
     fetchPosts();
   }, []);
-console.log(searchQuery);
+
   const handleSearch = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/search?title=${encodeURIComponent(searchQuery)}`
-      );
-      setPosts(response.data);
+     fetchPosts()
     } catch (error) {
       console.error("Error searching posts:", error);
     }
   };
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto pt-20 bg-green-800">
       <Helmet>
         <title>All Post - Volunteer Port</title>
       </Helmet>

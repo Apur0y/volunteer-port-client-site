@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 const AddVolunteerPost = () => {
 
   const {user} = useContext(AuthContext)
-  console.log(user)
+ 
   const [formData, setFormData] = useState({
     thumbnail: '',
     postTitle: "",
@@ -35,9 +35,9 @@ const AddVolunteerPost = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted:", formData);
+   
 
-    axios.post('http://localhost:3000/addpost',{
+    axios.post('https://volunteer-back.vercel.app/addpost',{
     thumbnail:formData.thumbnail,
     postTitle:formData.postTitle,
     description:formData.description,
