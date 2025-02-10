@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext/AuthContext";
-import { MdDarkMode } from "react-icons/md";
+import { MdDarkMode, MdKeyboardArrowDown } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 
 const Navbar = () => {
@@ -40,27 +40,33 @@ const Navbar = () => {
         </Link>
       </li>
       <li className="relative text-white">
-        <div className="dropdown">
-          <div tabIndex={0} role="button">
-            <button
-              className="relative block pb-1 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-red-600 before:transition-all before:duration-300 hover:before:w-full"
-            >
-              My Profile
-            </button>
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content bg-slate-500 text-white rounded-box z-[30] top-10 w-52 p-2 shadow"
-          >
-            <li>
-              <Link to="/needvolunteer">Add Volunteer Need Post</Link>
-            </li>
-            <li>
-              <Link to="/managepost">Manage My Posts</Link>
-            </li>
-          </ul>
-        </div>
+  <div className="dropdown dropdown-hover">
+    <div tabIndex={0} role="button">
+      <button
+        className="md:flex uppercase relative block pb-1 
+                   before:absolute before:bottom-0 before:left-0 
+                   before:h-[2px] before:w-0 before:bg-red-600 
+                   before:transition-all before:duration-300 
+                   hover:before:w-full"
+      >
+        My Profile <MdKeyboardArrowDown className="size-6"/>
+      </button>
+    </div>
+    <ul
+      tabIndex={0}
+      className="menu menu-sm dropdown-content bg-stone-500 text-white 
+                  z-[30] top-10 w-72 p-2 -right-24 shadow mt-1"
+    >
+      <li>
+        <Link to="/needvolunteer">Add Volunteer Need Post</Link>
       </li>
+      <li>
+        <Link to="/managepost">Manage My Posts</Link>
+      </li>
+    </ul>
+  </div>
+</li>
+
     </>
   );;
 
@@ -102,7 +108,7 @@ const Navbar = () => {
         <a className="btn btn-ghost text-white text-xl">Volunteer Port</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu text-white menu-horizontal px-1 text-xl">{links}</ul>
+        <ul className="menu text-white menu-horizontal uppercase px-1 font-medium">{links}</ul>
       </div>
       <div>
         <div>

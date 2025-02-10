@@ -15,7 +15,7 @@ const VolunteerNeed = () => {
 
   const sortedPosts = posts
     .sort((a, b) => new Date(a.deadline) - new Date(b.deadline))
-    .slice(0, 6);
+    .slice(0, 8);
 
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ const VolunteerNeed = () => {
   };
 
   return (
-    <div className="my-8  p-6 rounded shadow-lg w-11/12 mx-auto">
+    <div className="my-8 bg-green-800 p-6 rounded shadow-lg w-11/12 mx-auto">
       <h2 className="text-3xl font-extrabold text-center border-b-2 text-white mb-6">
         Volunteer Needs Now
       </h2>
