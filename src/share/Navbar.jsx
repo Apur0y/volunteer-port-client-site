@@ -23,16 +23,30 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li className="text-white">
-        <Link to="/">Home</Link>
+      <li className="relative  text-white">
+        <Link
+          to="/"
+          className="relative block pb-1 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-red-600 before:transition-all before:duration-300 hover:before:w-full"
+        >
+          Home
+        </Link>
       </li>
-      <li>
-        <Link to="/allposts">All Volunteer</Link>
+      <li className="relative text-white">
+        <Link
+          to="/allposts"
+          className="relative block pb-1 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-red-600 before:transition-all before:duration-300 hover:before:w-full"
+        >
+          All Volunteer
+        </Link>
       </li>
-      <li>
+      <li className="relative text-white">
         <div className="dropdown">
           <div tabIndex={0} role="button">
-            <button>My Profile</button>
+            <button
+              className="relative block pb-1 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-red-600 before:transition-all before:duration-300 hover:before:w-full"
+            >
+              My Profile
+            </button>
           </div>
           <ul
             tabIndex={0}
@@ -48,10 +62,10 @@ const Navbar = () => {
         </div>
       </li>
     </>
-  );
+  );;
 
   return (
-    <div className={`bg-transparent px-12 fixed z-40  navbar `}>
+    <div className={`bg-transparent md:px-12 fixed z-40  navbar `}>
       <div className="navbar-start">
         <div className="dropdown">
           <div
@@ -62,7 +76,7 @@ const Navbar = () => {
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="h-5 w-5 text-white"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -88,7 +102,7 @@ const Navbar = () => {
         <a className="btn btn-ghost text-white text-xl">Volunteer Port</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu text-white menu-horizontal px-1">{links}</ul>
+        <ul className="menu text-white menu-horizontal px-1 text-xl">{links}</ul>
       </div>
       <div>
         <div>

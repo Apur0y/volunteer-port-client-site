@@ -8,13 +8,13 @@ const Banner = () => {
   return (
     <div>
       {/* Main Banner Content */}
-      <div className="absolute w-1/2 z-10 inset-0 flex flex-col items-start justify-center text-left text-white px-6 lg:px-20 h-full">
+      <div className="absolute md:w-1/2 z-10 inset-0 flex flex-col items-start justify-center text-left text-white pt-52 md:pt-20 px-6 lg:px-20 h-full">
         <p className="text-lg lg:text-2xl font-semibold mb-4">Making a Difference</p>
         <h1 className="text-4xl lg:text-5xl font-bold mb-4">
           Together we can create positive change in the world.
         </h1>
         <p className="text-lg lg:text-xl mb-6">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+         The way to make the world more beautiful by giving a moment from your life to the world.
         </p>
         <div className="flex gap-4">
           <button className="bg-emerald-500 hover:bg-emerald-600 text-white py-3 px-6 rounded-lg text-lg">

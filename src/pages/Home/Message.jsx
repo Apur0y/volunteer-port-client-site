@@ -12,7 +12,7 @@ const DonationForm = () => {
   }
   return (
     <section className="py-12 px-5 ">
-      <div className="max-w-4xl mx-auto bg-green-900 rounded-lg shadow-lg p-8">
+      <div className="max-w-4xl mx-auto bg-stone-800 rounded-lg shadow-lg p-8">
         <h2 className="text-3xl font-bold text-center text-white mb-6">
           Donate to Support Our Cause
         </h2>
@@ -100,7 +100,7 @@ const DonationForm = () => {
           <div className="text-center">
             <button
            
-              className="bg-green-600 text-white px-6 py-3 text-lg font-semibold rounded hover:bg-green-700 transition"
+              className="bg-yellow-700 text-white px-6 py-3 text-lg font-semibold rounded hover:bg-green-700 transition"
             >
               Donate Now
             </button>
