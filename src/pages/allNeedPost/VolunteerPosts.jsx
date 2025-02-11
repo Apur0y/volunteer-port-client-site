@@ -36,7 +36,7 @@ const VolunteerPosts = () => {
   };
 
   return (
-    <div className="container mx-auto pt-20 bg-green-800">
+    <div className="container mx-auto pt-20 bg-zinc-700">
       <Helmet>
         <title>All Post - Volunteer Port</title>
       </Helmet>
@@ -59,7 +59,7 @@ const VolunteerPosts = () => {
 
 
       <div className="flex justify-between py-2">
-        <div></div>
+       
         <div className="flex gap-3">
           <button onClick={() => setLayout(true)} className="btn">
             <RiLayoutGrid2Fill className="size-6"></RiLayoutGrid2Fill>
@@ -69,10 +69,10 @@ const VolunteerPosts = () => {
           </button>
         </div>
       </div>
-      <div>
+      <div className="w-11/12 mx-auto">
         {layout ? (
           <div
-            className={`grid ${lightClass} grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6`}
+            className={`grid ${lightClass} grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-8`}
           >
             {posts.map((post) => (
               <div

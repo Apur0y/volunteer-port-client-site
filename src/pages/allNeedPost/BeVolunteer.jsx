@@ -67,14 +67,14 @@ const BeVolunteer = () => {
   };
 
   return (
-    <div className="volunteer-container bg-green-800 p-8 max-w-5xl mx-auto">
+    <div className="volunteer-container p-8 max-w-5xl mx-auto pt-44">
       {loading && <p className="text-center">Loading post details...</p>}
       {error && (
         <p className="text-center text-red-500 font-semibold">{error}</p>
       )}
       {postDetails && !loading && !error && (
         <>
-          <div className="bg-white shadow-lg rounded-lg p-6">
+          <div className="shadow-lg rounded-lg p-6 bg-stone-700" >
             {/* Header Section */}
             <div className="flex items-center mb-6">
               <img
@@ -83,43 +83,43 @@ const BeVolunteer = () => {
                 className="w-32 h-32 object-cover rounded shadow-md mr-6"
               />
               <div>
-                <h2 className="text-2xl font-bold text-gray-800">
+                <h2 className="text-2xl font-bold text-white">
                   {postDetails.postTitle}
                 </h2>
-                <p className="text-gray-500 italic">{postDetails.category}</p>
+                <p className="text-white italic">{postDetails.category}</p>
               </div>
             </div>
 
             {/* Details Section */}
             <div className="grid grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold text-gray-700">Description:</h4>
-                <p className="text-gray-600">{postDetails.description}</p>
+                <h4 className="font-semibold text-white">Description:</h4>
+                <p className="text-white">{postDetails.description}</p>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-700">Location:</h4>
-                <p className="text-gray-600">{postDetails.location}</p>
+                <h4 className="font-semibold text-white">Location:</h4>
+                <p className="text-white">{postDetails.location}</p>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-700">
+                <h4 className="font-semibold text-white">
                   Volunteers Needed:
                 </h4>
-                <p className="text-gray-600">
+                <p className="text-white">
                   {postDetails.volunteersNeeded > 0
                     ? postDetails.volunteersNeeded
                     : "No slots available"}
                 </p>
               </div>
               <div>
-                <h4 className="font-semibold text-gray-700">Deadline:</h4>
-                <p className="text-gray-600">{postDetails.deadline}</p>
+                <h4 className="font-semibold text-white">Deadline:</h4>
+                <p className="text-white">{postDetails.deadline}</p>
               </div>
             </div>
 
             {/* Organizer Info */}
             <div className="mt-6">
-              <h4 className="font-semibold text-gray-700">Organizer:</h4>
-              <p className="text-gray-600">
+              <h4 className="font-semibold text-white">Organizer:</h4>
+              <p className="text-white">
                 {postDetails.organizerName} (
                 <span className="text-blue-500">
                   {postDetails.organizerEmail}

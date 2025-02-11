@@ -8,9 +8,9 @@ import AuthContext from "../context/AuthContext/AuthContext";
 const MainLayout = () => {
     
   const {light} = useContext(AuthContext)
-  const lightClass = light ? "bg-white" : "bg-gray-800 text-white"
+
     return (
-        <div className={` mx-auto ${lightClass}`}>
+        <div className={` mx-auto bg-zinc-700`}>
             <Navbar></Navbar>
             <div className="">
             <Outlet></Outlet>
