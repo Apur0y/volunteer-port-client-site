@@ -14,7 +14,7 @@ const Home = () => {
     const lightClass = light ? "bg-white" : "bg-gray-800 text-white"
 
     return (
-        <div className={` mx-auto `}>
+        <div className={` mx-auto bg-zinc-700`}>
           <Helmet>
           <title>Home - Volunteer Port</title>
           <meta name="description" content="Welcome to Volunteer Port Home Page" />

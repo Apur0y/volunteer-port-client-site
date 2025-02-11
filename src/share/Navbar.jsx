@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext/AuthContext";
 import { MdDarkMode, MdKeyboardArrowDown } from "react-icons/md";
@@ -7,6 +7,7 @@ import { CiLight } from "react-icons/ci";
 const Navbar = () => {
   const { user, userSignOut, light, handleToggle } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [isScroll,setisScroll] = useState(false)
 
   const handleLight = () => {
     handleToggle();
@@ -20,6 +21,23 @@ const Navbar = () => {
     userSignOut();
   };
 
+  useEffect(()=>{
+       const handleScroll=()=>{
+          if(window.scrollY>0){
+            setisScroll(true)
+
+          }
+          else{
+            setisScroll(false)
+          }
+         }
+
+         window.addEventListener("scroll", handleScroll);
+
+         return () => {
+           window.removeEventListener("scroll", handleScroll);
+         };
+  })
 
   const links = (
     <>
@@ -71,7 +89,7 @@ const Navbar = () => {
   );;
 
   return (
-    <div className={`bg-transparent md:px-12 fixed z-40  navbar `}>
+    <div className={`${isScroll? "bg-stone-700" : "bg-transparent"} transition-all duration-700  md:px-12 fixed z-40  navbar `}>
       <div className="navbar-start">
         <div className="dropdown">
           <div
