@@ -5,6 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import AuthContext from "../../context/AuthContext/AuthContext";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import { div } from "framer-motion/client";
 
 const AddVolunteerPost = () => {
 
@@ -58,7 +59,8 @@ const AddVolunteerPost = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto mt-10 bg-green-800 p-6 rounded shadow">
+    <div className="pt-24">
+      <div className="max-w-4xl mx-auto pt-24 bg-white mb-3 p-6 rounded shadow">
        <Helmet>
               <title>Add Post - Volunteer Post</title>
             </Helmet>
@@ -185,11 +187,12 @@ const AddVolunteerPost = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-200"
+          className="w-full py-2 px-4 bg-emerald-500 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-200"
         >
           Add Post
         </button>
       </form>
+    </div>
     </div>
   );
 };
