@@ -70,7 +70,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-zinc-800 rounded-lg  z-[30] top-10 md:w-72 p-2 -right-24 shadow mt-1"
+            className="menu menu-sm dropdown-content bg-zinc-800 text-white rounded-lg  z-[30] top-10 md:w-72 p-2 -right-24 shadow mt-1"
           >
             <li>
               <Link to="/needvolunteer">Add Volunteer Need Post</Link>

@@ -12,7 +12,7 @@ const DonationForm = () => {
   }
   return (
     <section className="py-12 px-5 ">
-      <div className="max-w-4xl mx-auto bg-stone-800 rounded-lg shadow-lg p-8">
+      <div className="max-w-4xl mx-auto bg-zinc-800 rounded-lg shadow-lg p-8">
         <h2 className="text-3xl font-bold text-center text-white mb-6">
           Donate to Support Our Cause
         </h2>

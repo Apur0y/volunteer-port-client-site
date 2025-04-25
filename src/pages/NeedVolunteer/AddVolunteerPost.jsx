@@ -60,7 +60,7 @@ const AddVolunteerPost = () => {
 
   return (
     <div className="pt-24">
-      <div className="max-w-4xl mx-auto pt-24 bg-white mb-3 p-6 rounded shadow">
+      <div className="max-w-4xl mx-auto pt-24 bg-zinc-800/20 mb-3 p-6 rounded shadow">
        <Helmet>
               <title>Add Post - Volunteer Post</title>
             </Helmet>
@@ -74,7 +74,7 @@ const AddVolunteerPost = () => {
             name="thumbnail"
             value={formData.thumbnail}
             onChange={handleChange}
-            className="w-full px-3 py-2 border rounded text-black focus:outline-none focus:ring focus:ring-blue-200"
+            className="w-full px-3 py-2 border rounded text-white focus:outline-none focus:ring focus:ring-blue-200"
             placeholder="Enter post thumbnail url"
           />
         </div>
@@ -88,7 +88,7 @@ const AddVolunteerPost = () => {
             value={formData.postTitle}
             onChange={handleChange}
             placeholder="Enter post title"
-            className="w-full px-3 py-2 border rounded text-black focus:outline-none focus:ring focus:ring-blue-200"
+            className="w-full px-3 py-2 border rounded  focus:outline-none focus:ring focus:ring-blue-200"
             required
           />
         </div>
@@ -102,7 +102,7 @@ const AddVolunteerPost = () => {
             value={formData.description}
             onChange={handleChange}
             placeholder="Enter description"
-            className="w-full px-3 py-2 border rounded text-black focus:outline-none focus:ring focus:ring-blue-200"
+            className="w-full px-3 py-2 border rounded  focus:outline-none focus:ring focus:ring-blue-200"
             required
           />
         </div>
@@ -114,7 +114,7 @@ const AddVolunteerPost = () => {
             name="category"
             value={formData.category}
             onChange={handleChange}
-            className="w-full px-3 py-2 border text-black rounded focus:outline-none focus:ring focus:ring-blue-200"
+            className="w-full px-3 py-2 border text-white rounded focus:outline-none focus:ring focus:ring-blue-200"
           >
             <option value="healthcare">Healthcare</option>
             <option value="education">Education</option>
@@ -132,7 +132,7 @@ const AddVolunteerPost = () => {
             value={formData.location}
             onChange={handleChange}
             placeholder="Enter location"
-            className="w-full px-3 py-2 text-black border rounded focus:outline-none focus:ring focus:ring-blue-200"
+            className="w-full px-3 py-2  border rounded focus:outline-none focus:ring focus:ring-blue-200"
             required
           />
         </div>
@@ -146,7 +146,7 @@ const AddVolunteerPost = () => {
             value={formData.volunteersNeeded}
             onChange={handleChange}
             placeholder="Enter number of volunteers"
-            className="w-full px-3 py-2 text-black border rounded focus:outline-none focus:ring focus:ring-blue-200"
+            className="w-full px-3 py-2  border rounded focus:outline-none focus:ring focus:ring-blue-200"
             required
           />
         </div>
@@ -158,7 +158,7 @@ const AddVolunteerPost = () => {
             selected={formData.deadline}
             onChange={handleDateChange}
             dateFormat="yyyy-MM-dd"
-            className="w-full px-3 text-black py-2 border rounded focus:outline-none focus:ring focus:ring-blue-200"
+            className="w-full px-3  py-2 border rounded focus:outline-none focus:ring focus:ring-blue-200"
           />
         </div>
 
@@ -170,7 +170,7 @@ const AddVolunteerPost = () => {
               type="text"
               value={user?.displayName}
               readOnly
-              className="w-full text-black px-3 py-2 border rounded bg-gray-100"
+              className="w-full  px-3 py-2 border rounded bg-gray-100"
             />
           </div>
           <div>
@@ -179,7 +179,7 @@ const AddVolunteerPost = () => {
               type="email"
               value={user?.email}
               readOnly
-              className="w-full px-3 py-2 text-black border rounded bg-gray-100"
+              className="w-full px-3 py-2  border rounded bg-gray-100"
             />
           </div>
         </div>

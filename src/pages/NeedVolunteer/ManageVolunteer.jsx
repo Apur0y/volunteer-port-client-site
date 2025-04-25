@@ -84,7 +84,7 @@ const MyVolunteerPosts = () => {
       </div>
 
       <div className="max-w-6xl mx-auto p-8 mt-10 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-semibold text-center text-gray-800 border-b pb-3 mb-6">My Volunteer Need Posts</h2>
+        <h2 className="text-3xl font-semibold text-center  border-b pb-3 mb-6">My Volunteer Need Posts</h2>
         {loading ? (
           <p className="text-center">Loading your posts...</p>
         ) : posts.length === 0 ? (

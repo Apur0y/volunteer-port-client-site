@@ -2,7 +2,7 @@ import React from 'react';
 
 const Description = () => {
     return (
-        <section className="bg-stone-900 py-10 px-5">
+        <section className="bg-zinc-800 py-10 px-5">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8">
           {/* Left Side - Image */}
           <div className="flex-shrink-0 md:w-1/2">

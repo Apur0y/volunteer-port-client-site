@@ -28,7 +28,7 @@ const categories = [
 
 const Categories = () => {
   return (
-    <div className="p-8 w-11/12 my-12 mx-auto text-center bg-yellow-100">
+    <div className="p-8 w-11/12 my-12 mx-auto text-center ">
       <h2 className="text-3xl font-bold mb-6">Volunteer Initiatives</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
         {categories.map((category, index) => (
@@ -41,7 +41,7 @@ const Categories = () => {
               <div className="flex flex-col items-center">
                 {category.icon}
                 <h3 className="text-lg font-semibold mt-4">{category.title}</h3>
-                <p className="text-gray-600 mt-2 text-sm">{category.description}</p>
+                <p className=" mt-2 text-sm">{category.description}</p>
               </div>
             </div>
           </motion.div>
