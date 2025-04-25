@@ -23,7 +23,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0 && window.location.pathname =="/" || window.location.pathname === "/allposts" || window.location.pathname === "/needvolunteer" || window.location.pathname === "/managepost") {
+      if (window.scrollY > 0 && window.location.pathname =="/" || window.location.pathname === "/allposts" || window.location.pathname === "/needvolunteer" || window.location.pathname === "/managepost" || window.location.pathname === "/login" ) {
         setisScroll(true);
       } else {
         setisScroll(false);

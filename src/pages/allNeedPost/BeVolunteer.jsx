@@ -74,7 +74,7 @@ const BeVolunteer = () => {
       )}
       {postDetails && !loading && !error && (
         <>
-          <div className="shadow-lg rounded-lg p-6 bg-stone-700" >
+          <div className="shadow-lg rounded-lg p-6 bg-zinc-800" >
             {/* Header Section */}
             <div className="flex items-center mb-6">
               <img

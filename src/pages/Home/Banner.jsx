@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -17,12 +18,19 @@ const Banner = () => {
          The way to make the world more beautiful by giving a moment from your life to the world.
         </p>
         <div className="flex gap-4">
-          <button className="bg-emerald-500 hover:bg-emerald-600 text-white py-3 px-6 rounded-lg text-lg">
+          <Link to='/allposts'>
+          <button className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg text-lg">
             Donate
           </button>
-          <button className="bg-emerald-500 hover:bg-emerald-600 text-white py-3 px-6 rounded-lg text-lg">
+          </Link>
+
+          <Link to='/allposts'>
+          <button className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg text-lg">
             Events
           </button>
+          </Link>
+         
+         
         </div>
       </div>
 
