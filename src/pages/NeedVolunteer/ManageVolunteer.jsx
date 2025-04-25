@@ -47,17 +47,17 @@ const MyVolunteerPosts = () => {
   };
 
   return (
-    <div className="pt-24 bg-stone-500 min-h-screen px-6 pb-5">
+    <div className="pt-24 min-h-screen px-6 pb-5">
       <Helmet>
         <title>Manage Post - Volunteer Post</title>
       </Helmet>
-      <div className="max-w-6xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-        <h2 className="text-3xl font-semibold text-center text-gray-800 border-b pb-3 mb-6">My Volunteer Request</h2>
+      <div className="max-w-6xl mx-auto backdrop-blur-2xl bg-black/20 p-8 rounded-lg shadow-lg">
+        <h2 className="text-3xl font-semibold text-center border-b pb-3 mb-6">My Volunteer Request</h2>
         {request.length === 0 ? (
           <p className="text-center text-gray-500">No volunteer requests found. Start by creating one!</p>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <table className="w-full shadow-md rounded-lg overflow-hidden">
               <thead className="bg-emerald-600 text-white">
                 <tr>
                   <th className="py-3 px-5 text-left">Post Title</th>
@@ -68,7 +68,7 @@ const MyVolunteerPosts = () => {
               </thead>
               <tbody>
                 {request.map((req) => (
-                  <tr key={req._id} className="border-b hover:bg-gray-100">
+                  <tr key={req._id} className="border-b ">
                     <td className="py-3 px-5">{req.postTitle}</td>
                     <td className="py-3 px-5">{req.category}</td>
                     <td className="py-3 px-5">{req.deadline}</td>
@@ -83,16 +83,16 @@ const MyVolunteerPosts = () => {
         )}
       </div>
 
-      <div className="max-w-6xl mx-auto bg-white p-8 mt-10 rounded-lg shadow-lg">
+      <div className="max-w-6xl mx-auto p-8 mt-10 rounded-lg shadow-lg">
         <h2 className="text-3xl font-semibold text-center text-gray-800 border-b pb-3 mb-6">My Volunteer Need Posts</h2>
         {loading ? (
           <p className="text-center">Loading your posts...</p>
         ) : posts.length === 0 ? (
-          <p className="text-center text-gray-500">You have not added any volunteer need posts yet. Start by adding one!</p>
+          <p className="text-center ">You have not added any volunteer need posts yet. Start by adding one!</p>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full bg-white shadow-md rounded-lg overflow-hidden">
-              <thead className="bg-blue-600 text-white">
+            <table className="w-full shadow-md rounded-lg overflow-hidden">
+              <thead className="bg-emerald-600 text-white">
                 <tr>
                   <th className="py-3 px-5 text-left">Post Title</th>
                   <th className="py-3 px-5 text-left">Category</th>
@@ -102,7 +102,7 @@ const MyVolunteerPosts = () => {
               </thead>
               <tbody>
                 {posts.map((post) => (
-                  <tr key={post._id} className="border-b hover:bg-gray-100">
+                  <tr key={post._id} className="border-b ">
                     <td className="py-3 px-5">{post.postTitle}</td>
                     <td className="py-3 px-5">{post.category}</td>
                     <td className="py-3 px-5">{post.deadline}</td>

@@ -36,7 +36,7 @@ const VolunteerPosts = () => {
   };
 
   return (
-    <div className="container mx-auto pt-20 bg-zinc-700 pb-5">
+    <div className="container mx-auto pt-20  pb-5">
       <Helmet>
         <title>All Post - Volunteer Port</title>
       </Helmet>
@@ -47,11 +47,11 @@ const VolunteerPosts = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search by Post Title"
-          className="border p-2 text-black w-full md:w-1/2 rounded"
+          className="border p-2  w-full md:w-1/2 rounded"
         />
         <button
           onClick={handleSearch}
-          className="bg-emerald-500  px-4 py-2 rounded hover:bg-blue-600 transition"
+          className="bg-emerald-500  px-4 py-2 rounded hover:bg-emerald-600 transition"
         >
           Search
         </button>
@@ -72,12 +72,12 @@ const VolunteerPosts = () => {
       <div className="w-11/12 mx-auto ">
         {layout ? (
           <div
-            className={`grid ${lightClass} grid-cols-1 md:grid-cols-2 bg-emerald-500 lg:grid-cols-3 gap-6 p-8`}
+            className={`grid  grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-6 p-8`}
           >
             {posts.map((post) => (
               <div
                 key={post._id}
-                className=" bg-emerald-200 text-black rounded shadow-md p-4 hover:shadow-lg transition"
+                className="  rounded shadow-md p-4 hover:shadow-lg transition"
               >
                 <img
                   src={post.thumbnail}
@@ -95,7 +95,7 @@ const VolunteerPosts = () => {
 
                 <button
                   onClick={() => navigate(`/viewdetails/${post._id}`)}
-                  className="mt-4 bg-emerald-400  px-4 py-2 rounded hover:bg-blue-600"
+                  className="mt-4 bg-emerald-400  px-4 py-2 rounded hover:bg-emerald-600"
                 >
                   View Details
                 </button>

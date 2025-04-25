@@ -1,9 +1,13 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../../context/AuthContext/AuthContext";
 
 const VolunteerNeed = () => {
   const [posts, setPosts] = useState([]);
+
+    const {light} = useContext(AuthContext)
+      const lightClass = light ? "bg-white text-black" : "bg-zinc-700 text-white"
 
   // Fetch user-specific posts
   useEffect(() => {
@@ -24,15 +28,15 @@ const VolunteerNeed = () => {
   };
 
   return (
-    <div className="my-8 bg-stone-700 p-6 rounded shadow-lg w-11/12 mx-auto">
-      <h2 className="text-3xl font-extrabold text-center border-b-2 text-white mb-6">
+    <div className={`my-8  p-6 rounded shadow-lg w-11/12 mx-auto`}>
+      <h2 className="text-3xl font-extrabold text-center border-b-2  mb-6">
         Volunteer Needs Now
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {sortedPosts.map((post) => (
           <div
             key={post?._id}
-            className="bg-white border border-green-200 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+            className="  rounded-lg shadow-lg hover:shadow-xl transition duration-300"
           >
             <img
               src={post?.thumbnail || "https://img.freepik.com/free-photo/helping-hands-volunteer-support-community-service-graphic_53876-64955.jpg?semt=ais_hybrid"}
@@ -51,7 +55,7 @@ const VolunteerNeed = () => {
               </p>
               <button
                 onClick={() => handleViewDetails(post?._id)}
-                className="mt-4 w-full px-4 py-2 bg-green-950 text-white font-semibold rounded hover:bg-green-800 transition duration-300"
+                className="mt-4 w-full px-4 py-2 bg-green-600 text-white font-semibold rounded hover:bg-green-800 transition duration-300"
               >
                 View Details
               </button>

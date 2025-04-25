@@ -10,7 +10,7 @@ const MainLayout = () => {
   const {light} = useContext(AuthContext)
 
     return (
-        <div className={` mx-auto bg-zinc-700`}>
+        <div className={`${light?"bg-white text-black":"bg-zinc-700 text-white"} mx-auto `}>
             <Navbar></Navbar>
             <div className="">
             <Outlet></Outlet>
