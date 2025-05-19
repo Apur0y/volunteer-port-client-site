@@ -43,13 +43,13 @@ const Banner = () => {
         </p>
 
 
-           <div className="mb-4 bg-white/60 rounded-lg p-8 flex gap-2 items-center mx-auto w-11/12">
+           <div className="mb-4 bg-white/60 rounded-lg p-8 flex gap-2 justify-center items-center mx-auto w-11/12">
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search by Post Title"
-          className="border p-2  w-full md:w-1/2 rounded"
+          className="bg-white p-2 text-gray-700 font-bold  w-full  rounded"
         />
         <button
           onClick={handleSearch}
