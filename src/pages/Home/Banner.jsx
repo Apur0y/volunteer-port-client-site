@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -6,10 +6,34 @@ import { Navigation, Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
 
 const Banner = () => {
+
+    const [searchQuery, setSearchQuery] = useState("");
+
+  
+  const fetchPosts = async () => {
+    try {
+      const response = await axios.get(`https://volunteer-back.vercel.app/allposts?title=${searchQuery}`);
+      setPosts(response.data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  };
+  // Fetch posts from the backend
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const handleSearch = async () => {
+    try {
+     fetchPosts()
+    } catch (error) {
+      console.error("Error searching posts:", error);
+    }};
+
   return (
     <div>
       {/* Main Banner Content */}
-      <div className="absolute md:w-1/2 z-10 inset-0 flex flex-col items-start justify-center text-left text-white pt-52 md:pt-20 px-6 lg:px-20 h-full">
+      <div className="absolute z-10 inset-0 flex flex-col items-start justify-center text-left text-white pt-52 md:pt-20 px-6 lg:px-20 h-full">
         <p className="text-lg lg:text-2xl font-semibold mb-4">Making a Difference</p>
         <h1 className="text-4xl lg:text-5xl font-bold mb-4">
           Together we can create positive change in the world.
@@ -17,21 +41,25 @@ const Banner = () => {
         <p className="text-lg lg:text-xl mb-6">
          The way to make the world more beautiful by giving a moment from your life to the world.
         </p>
-        <div className="flex gap-4">
-          <Link to='/allposts'>
-          <button className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg text-lg">
-            Donate
-          </button>
-          </Link>
 
-          <Link to='/allposts'>
-          <button className="bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-lg text-lg">
-            Events
-          </button>
-          </Link>
-         
-         
-        </div>
+
+           <div className="mb-4 bg-white/60 rounded-lg p-8 flex gap-2 items-center mx-auto w-11/12">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search by Post Title"
+          className="border p-2  w-full md:w-1/2 rounded"
+        />
+        <button
+          onClick={handleSearch}
+          className="bg-emerald-500  px-4 py-2 rounded hover:bg-emerald-600 transition"
+        >
+          Search
+        </button>
+      </div>
+
+
       </div>
 
       <Swiper
