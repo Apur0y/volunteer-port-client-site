@@ -28,7 +28,7 @@ const VolunteerNeed = () => {
   };
 
   return (
-    <div className={`my-8  p-6 rounded shadow-lg w-11/12 mx-auto`}>
+    <div className={`my-8 ${light?"bg-white text-black":"bg-zinc-800 text-white"} p-6 rounded shadow-lg w-11/12 mx-auto`}>
       <h2 className="text-3xl font-extrabold text-center border-b-2  mb-6">
         Volunteer Needs Now
       </h2>
@@ -39,7 +39,7 @@ const VolunteerNeed = () => {
             className="  rounded-lg shadow-lg hover:shadow-xl transition duration-300"
           >
             <img
-              src={post?.thumbnail || "https://img.freepik.com/free-photo/helping-hands-volunteer-support-community-service-graphic_53876-64955.jpg?semt=ais_hybrid"}
+              src={post?.thumbnail || "/default.jpg"}
               alt={post?.title}
               className="w-full h-48 object-cover rounded-t-lg"
             />
@@ -50,7 +50,7 @@ const VolunteerNeed = () => {
               <p className="text-sm  mt-1">
                 <strong>Category:</strong> {post?.category}
               </p>
-              <p className="text-sm text-red-500 mt-1">
+              <p className="text-sm text-yellow-500 mt-1">
                 <strong>Deadline:</strong> {post?.deadline}
               </p>
               <button
