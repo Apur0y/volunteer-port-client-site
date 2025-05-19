@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../context/AuthContext/AuthContext";
+import { TbArrowBadgeRight } from "react-icons/tb";
+import VolunteerCard from "./VolunteerCard/VolunteerCard";
 
 const VolunteerNeed = () => {
   const [posts, setPosts] = useState([]);
@@ -29,10 +31,10 @@ const VolunteerNeed = () => {
 
   return (
     <div className={`my-8 ${light?"bg-white text-black":"bg-zinc-800 text-white"} p-6 rounded shadow-lg w-11/12 mx-auto`}>
-      <h2 className="text-3xl font-extrabold text-center border-b-2  mb-6">
-        Volunteer Needs Now
+      <h2 className="text-3xl font-extrabold  border-b-2 flex mb-6">
+        <TbArrowBadgeRight className="size- my-auto" />Volunteer Needs Now
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {sortedPosts.map((post) => (
           <div
             key={post?._id}
@@ -62,7 +64,9 @@ const VolunteerNeed = () => {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
+      <VolunteerCard sortedPosts={sortedPosts}></VolunteerCard>
+
       <div className="text-center mt-6">
         <Link to="/allposts">
           <button className="px-8 py-3 bg-green-700 text-white text-lg font-semibold rounded hover:bg-green-800 transition duration-300">
