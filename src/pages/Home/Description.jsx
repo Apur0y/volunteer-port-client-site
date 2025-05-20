@@ -2,14 +2,14 @@ import React from 'react';
 
 const Description = () => {
     return (
-        <section className="bg-zinc-800 py-10 px-5">
+        <section className=" py-10 px-5">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8">
           {/* Left Side - Image */}
           <div className="flex-shrink-0 md:w-1/2">
             <img
               src="https://www.breakthrought1d.org/wp-content/uploads/2024/04/BecomeAVolunteer_VolunteerOptions-1024x683.jpg"
               alt="Volunteering"
-              className="w-full h-auto rounded-r-lg object-cover"
+              className="w-full h-auto rounded-lg object-cover"
             />
           </div>
   
