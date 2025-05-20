@@ -42,7 +42,7 @@ const VolunteerPosts = () => {
         <title>All Post - Volunteer Port</title>
       </Helmet>
       {/* Search Input */}
-      <div className="mb-4 flex gap-2 items-center mx-auto w-11/12">
+      <div className=" mt-8 flex gap-2 items-center mx-auto w-11/12">
         <input
           type="text"
           value={searchQuery}

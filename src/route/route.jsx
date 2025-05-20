@@ -11,6 +11,7 @@ import VolunteerPosts from "../pages/allNeedPost/VolunteerPosts";
 import UpdateVolunteerPost from "../pages/NeedVolunteer/UpdateVolunteerPost";
 import BeVolunteer from "../pages/allNeedPost/BeVolunteer";
 import Error from "../pages/Error";
+import DonationForm from "../pages/Contact/Message";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <Login></Login>,
+      },
+      {
+         path:"contact",
+         element:<DonationForm></DonationForm>
       },
       {
         path: "needvolunteer",

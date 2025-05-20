@@ -25,14 +25,14 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (
-        window.scrollY > 0 &&
+        window.scrollY <= 7 &&
         (
-          window.location.pathname === "/" ||
-          window.location.pathname === "/allposts" ||
-          window.location.pathname === "/needvolunteer" ||
-          window.location.pathname === "/managepost" ||
-          window.location.pathname === "/login" ||
-          window.location.pathname === `/viewdetails/${id}`
+          window.location.pathname === "/" 
+          // window.location.pathname === "/allposts" ||
+          // window.location.pathname === "/needvolunteer" ||
+          // window.location.pathname === "/managepost" ||
+          // window.location.pathname === "/login" ||
+          // window.location.pathname === `/viewdetails/${id}`
         )
       ) {
         setisScroll(true);
@@ -49,7 +49,7 @@ const Navbar = () => {
   });
 
   const links = (
-    <div className={`${light? "text-sky-700 ":""}   flex`}>
+    <div className={`${light? " ":""}  font-semibold flex`}>
       <li className="relative  ">
         <Link
           to="/"
@@ -66,6 +66,7 @@ const Navbar = () => {
           All Volunteer
         </Link>
       </li>
+     
       <li className="relative ">
         <div className="dropdown dropdown-hover">
           <div tabIndex={0} role="button">
@@ -92,14 +93,22 @@ const Navbar = () => {
           </ul>
         </div>
       </li>
+       <li className="relative ">
+        <Link
+          to="/contact"
+          className="relative block pb-1 before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-0 before:bg-red-600 before:transition-all before:duration-300 hover:before:w-full"
+        >
+          Contact
+        </Link>
+      </li>
     </div>
   );
-  const lightClass = light ? "bg-white text-black" : "bg-zinc-800 text-white";
+  // const lightClass = light ? "text-white" : " text-white";
 
   return (
     <div
     className={`${
-      isScroll ? lightClass : "bg-transparent text-white"
+      isScroll ? "bg-transparent text-white" : "bg-sky-900 text-white"
     } transition-all duration-700 md:px-12 fixed z-40 navbar`}
   >
       <div className="navbar-start">

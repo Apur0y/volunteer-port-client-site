@@ -3,7 +3,7 @@ import Navbar from "../../share/Navbar";
 import Banner from "./Banner";
 import VolunteerNeed from "./VolunteerNeed";
 import AuthContext from "../../context/AuthContext/AuthContext";
-import Message from "./Message";
+import Message from "../Contact/Message";
 import Description from "./Description";
 import { Helmet } from "react-helmet-async";
 import Categories from "./Categories";

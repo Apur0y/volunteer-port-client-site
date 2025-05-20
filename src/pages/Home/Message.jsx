@@ -12,17 +12,17 @@ const DonationForm = () => {
   }
   return (
     <section className="py-12 px-5 ">
-      <div className="max-w-4xl mx-auto bg-zinc-800 rounded-lg shadow-lg p-8">
-        <h2 className="text-3xl font-bold text-center text-white mb-6">
+      <div className="max-w-4xl mx-auto backdrop-blur-2xl bg-sky-950/20a rounded-2xl shadow-lg p-8">
+        <h2 className="text-3xl font-bold text-center  mb-6">
           Donate to Support Our Cause
         </h2>
-        <p className="text-white text-center mb-8">
+        <p className=" text-center mb-8">
           Your contributions help us make a meaningful impact. Fill out the form
           below to donate securely.
         </p>
         <form onSubmit={handleDonate} className="space-y-6">
           {/* Name and Email Fields */}
-          <div className="grid grid-cols-1 text-white md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1  md:grid-cols-2 gap-6">
             <div>
               <label className="block font-medium mb-2" htmlFor="name">
                 Your Name
@@ -48,7 +48,7 @@ const DonationForm = () => {
           </div>
           {/* Donation Amount */}
           <div>
-            <label className="block font-medium text-white mb-2" htmlFor="amount">
+            <label className="block font-medium  mb-2" htmlFor="amount">
               Donation Amount (USD)
             </label>
             <input
@@ -61,7 +61,7 @@ const DonationForm = () => {
           </div>
           {/* Message */}
           <div>
-            <label className="block text-white font-medium  mb-2" htmlFor="message">
+            <label className="block  font-medium  mb-2" htmlFor="message">
               Your Message (Optional)
             </label>
             <textarea
@@ -73,14 +73,14 @@ const DonationForm = () => {
           </div>
           {/* Payment Method */}
           <div>
-            <label className="block font-medium text-white mb-2">Payment Method</label>
-            <div className="flex items-center text-white gap-4">
+            <label className="block font-medium  mb-2">Payment Method</label>
+            <div className="flex items-center  gap-4">
               <label className="flex items-center gap-2">
                 <input
                   type="radio"
                   name="payment"
                   value="credit_card"
-                  className="text-white  focus:ring-green-500"
+                  className="  focus:ring-green-500"
                   required
                 />
                 Credit Card
@@ -90,7 +90,7 @@ const DonationForm = () => {
                   type="radio"
                   name="payment"
                   value="paypal"
-                  className="text-white focus:ring-green-500"
+                  className=" focus:ring-green-500"
                 />
                 PayPal
               </label>
@@ -100,7 +100,7 @@ const DonationForm = () => {
           <div className="text-center">
             <button
            
-              className="bg-sky-700 text-white px-6 py-3 text-lg font-semibold rounded hover:bg-sky-800 transition"
+              className="bg-sky-700  px-6 py-3 text-lg font-semibold rounded hover:bg-sky-800 transition"
             >
               Donate Now
             </button>
