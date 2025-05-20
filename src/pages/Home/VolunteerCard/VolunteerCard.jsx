@@ -7,7 +7,7 @@ const VolunteerCard = ({ sortedPosts }) => {
         {sortedPosts.map((post) => (
           <div
             key={post?._id}
-            className="border flex flex-col justify-between rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+            className="border flex flex-col justify-between rounded-lg shadow-lg hover:shadow-xl transition duration-300 bg-white"
           >
             <img
               src={post?.thumbnail || "/default.jpg"}
