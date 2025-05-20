@@ -5,6 +5,7 @@ import AuthContext from "../../context/AuthContext/AuthContext";
 import { Helmet } from "react-helmet-async";
 import { RiLayoutGrid2Fill } from "react-icons/ri";
 import { CgLayoutList } from "react-icons/cg";
+import VolunteerCard from "../Home/VolunteerCard/VolunteerCard";
 
 const VolunteerPosts = () => {
   const [posts, setPosts] = useState([]);
@@ -51,16 +52,16 @@ const VolunteerPosts = () => {
         />
         <button
           onClick={handleSearch}
-          className="bg-emerald-500  px-4 py-2 rounded hover:bg-emerald-600 transition"
+          className="bg-sky-500  px-4 py-2 rounded hover:bg-sky-600 transition"
         >
           Search
         </button>
       </div>
 
 
-      <div className="flex justify-between py-2 w-1/12 mx-auto">
+      <div className="flex justify-end py-2 w-11/12 ">
        
-        <div className="flex gap-3 ">
+        <div className="flex gap-3  ">
           <button onClick={() => setLayout(true)} className="btn">
             <RiLayoutGrid2Fill className="size-6"></RiLayoutGrid2Fill>
           </button>
@@ -71,42 +72,45 @@ const VolunteerPosts = () => {
       </div>
       <div className="w-11/12 mx-auto ">
         {layout ? (
-          <div
-            className={`grid  grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-6 p-8`}
-          >
-            {posts.map((post) => (
-              <div
-                key={post._id}
-                className="  rounded shadow-md p-4 hover:shadow-lg transition"
-              >
-                <img
-                  src={post.thumbnail}
-                  alt={post.postTitle}
-                  className="w-full h-40 object-cover rounded mb-4"
-                />
-                <h2 className="text-xl font-semibold">{post.postTitle}</h2>
-                <p className="">{post.description}...</p>
-                <p className="text-sm    mt-2">
-                  <strong>Volunteers Needed:</strong> {post.volunteersNeeded}
-                </p>
-                <p className="text-sm ">
-                  <strong>Location:</strong> {post.location}
-                </p>
+          // <div
+          //   className={`grid  grid-cols-1 md:grid-cols-2  lg:grid-cols-3 gap-6 p-8`}
+          // >
+          //   {posts.map((post) => (
+          //     <div
+          //       key={post._id}
+          //       className="  rounded shadow-md p-4 hover:shadow-lg transition"
+          //     >
+          //       <img
+          //         src={post.thumbnail}
+          //         alt={post.postTitle}
+          //         className="w-full h-40 object-cover rounded mb-4"
+          //       />
+          //       <h2 className="text-xl font-semibold">{post.postTitle}</h2>
+          //       <p className="">{post.description}...</p>
+          //       <p className="text-sm    mt-2">
+          //         <strong>Volunteers Needed:</strong> {post.volunteersNeeded}
+          //       </p>
+          //       <p className="text-sm ">
+          //         <strong>Location:</strong> {post.location}
+          //       </p>
 
-                <button
-                  onClick={() => navigate(`/viewdetails/${post._id}`)}
-                  className="mt-4 bg-emerald-400  px-4 py-2 rounded hover:bg-emerald-600"
-                >
-                  View Details
-                </button>
-              </div>
-            ))}
+          //       <button
+          //         onClick={() => navigate(`/viewdetails/${post._id}`)}
+          //         className="mt-4 bg-emerald-400  px-4 py-2 rounded hover:bg-emerald-600"
+          //       >
+          //         View Details
+          //       </button>
+          //     </div>
+          //   ))}
+          // </div>
+          <div>
+            <VolunteerCard sortedPosts={posts}></VolunteerCard>
           </div>
         ) : (
           <div className={`container mx-auto ${lightClass} py-4`}>
   <div className="overflow-x-auto">
     <table className="table-auto w-full border-collapse border border-gray-300">
-      <thead className="bg-gray-200">
+      <thead className="bg-sky-600">
         <tr>
           <th className="border border-gray-300 px-4 py-2 text-sm lg:text-base">
             Thumbnail
@@ -130,7 +134,7 @@ const VolunteerPosts = () => {
       </thead>
       <tbody>
         {posts.map((post) => (
-          <tr key={post._id} className="hover:bg-gray-100">
+          <tr key={post._id} className="">
             <td className="border border-gray-300 px-4 py-2">
               <img
                 src={post.thumbnail}
@@ -153,7 +157,7 @@ const VolunteerPosts = () => {
             <td className="border border-gray-300 px-4 py-2 text-sm lg:text-base">
               <button
                 onClick={() => navigate(`/viewdetails/${post._id}`)}
-                className="bg-emerald-400  px-3 py-2 lg:px-4 lg:py-2 rounded hover:bg-blue-600 transition"
+                className="bg-sky-600  px-3 py-2 lg:px-4 lg:py-2 rounded hover:bg-blue-600 transition"
               >
                 View Details
               </button>

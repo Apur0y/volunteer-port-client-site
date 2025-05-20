@@ -69,7 +69,7 @@ const VolunteerNeed = () => {
 
       <div className="text-center mt-6">
         <Link to="/allposts">
-          <button className="px-8 py-3 bg-green-700 text-white text-lg font-semibold rounded hover:bg-green-800 transition duration-300">
+          <button className="px-8 py-3 bg-sky-700 text-white text-lg font-semibold rounded hover:bg-sky-800 transition duration-300">
             See All
           </button>
         </Link>

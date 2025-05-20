@@ -133,7 +133,7 @@ useEffect(() => {
             }}
           >
             {/* Gradient Overlay (darker on right side) */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/20"></div>
           </SwiperSlide>
         ))}
       </Swiper>

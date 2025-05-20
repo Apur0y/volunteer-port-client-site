@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const VolunteerCard = ({ sortedPosts }) => {
+
+  const navigate =useNavigate();
+
+  const handleViewDetails = (postId) => {
+    navigate(`/viewdetails/${postId}`);
+  };
   return (
     <div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -44,7 +51,7 @@ const VolunteerCard = ({ sortedPosts }) => {
              <div className="bg-gray-200 p-4 w-full">
                 <button
                   onClick={() => handleViewDetails(post?._id)}
-                  className=" w-full px-4 py-1 text-sm bg-white text-sky-900 font-semibold  hover:bg-green-800 transition duration-300"
+                  className=" w-full px-4 py-1 text-sm bg-white text-sky-900 font-semibold  hover:bg-sky-800 hover:text-white transition duration-300"
                 >
                   View Details
                 </button>

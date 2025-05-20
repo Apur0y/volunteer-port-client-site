@@ -100,7 +100,7 @@ const DonationForm = () => {
           <div className="text-center">
             <button
            
-              className="bg-yellow-700 text-white px-6 py-3 text-lg font-semibold rounded hover:bg-green-700 transition"
+              className="bg-sky-700 text-white px-6 py-3 text-lg font-semibold rounded hover:bg-sky-800 transition"
             >
               Donate Now
             </button>

@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthContext from "../context/AuthContext/AuthContext";
 import { MdDarkMode, MdKeyboardArrowDown } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
@@ -8,6 +8,7 @@ const Navbar = () => {
   const { user, userSignOut, light, handleToggle } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isScroll, setisScroll] = useState(false);
+  const {id} =useParams()
 
   const handleLight = () => {
     handleToggle();
@@ -23,7 +24,17 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0 && window.location.pathname =="/" || window.location.pathname === "/allposts" || window.location.pathname === "/needvolunteer" || window.location.pathname === "/managepost" || window.location.pathname === "/login" ) {
+      if (
+        window.scrollY > 0 &&
+        (
+          window.location.pathname === "/" ||
+          window.location.pathname === "/allposts" ||
+          window.location.pathname === "/needvolunteer" ||
+          window.location.pathname === "/managepost" ||
+          window.location.pathname === "/login" ||
+          window.location.pathname === `/viewdetails/${id}`
+        )
+      ) {
         setisScroll(true);
       } else {
         setisScroll(false);
@@ -38,7 +49,7 @@ const Navbar = () => {
   });
 
   const links = (
-    <>
+    <div className={`${light? "text-sky-700 ":""}   flex`}>
       <li className="relative  ">
         <Link
           to="/"
@@ -81,7 +92,7 @@ const Navbar = () => {
           </ul>
         </div>
       </li>
-    </>
+    </div>
   );
   const lightClass = light ? "bg-white text-black" : "bg-zinc-800 text-white";
 
@@ -117,7 +128,7 @@ const Navbar = () => {
           {isOpen && (
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-zinc-700  rounded-box z-[30] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-zinc-700 text-sky-600 rounded-box z-[30] mt-3 w-52 p-2 shadow"
             >
               {links}
             </ul>

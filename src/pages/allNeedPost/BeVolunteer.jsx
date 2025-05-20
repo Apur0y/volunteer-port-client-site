@@ -67,7 +67,7 @@ const BeVolunteer = () => {
   };
 
   return (
-    <div className="volunteer-container p-8 max-w-5xl mx-auto pt-44">
+    <div className="volunteer-container p-8 max-w-5xl mx-auto pt-44 ">
       {loading && <p className="text-center">Loading post details...</p>}
       {error && (
         <p className="text-center text-red-500 font-semibold">{error}</p>
