@@ -7,7 +7,7 @@ import { CiLight } from "react-icons/ci";
 const Navbar = () => {
   const { user, userSignOut, light, handleToggle } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [isScroll, setisScroll] = useState(false);
+  const [isScroll, setisScroll] = useState(true);
   const {id} =useParams()
 
   const handleLight = () => {
@@ -49,7 +49,7 @@ const Navbar = () => {
   });
 
   const links = (
-    <div className={`${light? " ":""}  font-semibold flex`}>
+    <div className={`${light? " ":""}  font-semibold flex flex-col lg:flex-row`}>
       <li className="relative  ">
         <Link
           to="/"
@@ -143,7 +143,7 @@ const Navbar = () => {
             </ul>
           )}
         </div>
-        <img src="/sidelogo.png" alt="" className="w-10" />
+        <img src="/sidelogo.png" alt="" className="w-10 hidden md:flex" />
         <a className="btn btn-ghost  text-xl">Volunteer Port</a>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -154,7 +154,7 @@ const Navbar = () => {
       <div>
         <div>
           <button
-            className="hover:bg-blue-200 p-3 ml-20 md:ml-1 rounded-full"
+            className="hover:bg-blue-200 p-3 ml-10 md:ml-1 rounded-full"
             onClick={handleLight}
           >
             {light ? <MdDarkMode /> : <CiLight />}
@@ -165,7 +165,7 @@ const Navbar = () => {
         {user ? (
           <>
             {/* Profile Picture with Tooltip */}
-            <div className="relative group">
+            <div className="relative group mr-2">
               <img
                 src={user.photoURL}
                 className="w-10 h-10 rounded-full"
@@ -176,11 +176,14 @@ const Navbar = () => {
                 className="absolute left-1/2 top-12 z-30 transform -translate-x-1/2 px-2 py-1 text-sm  bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity"
                 role="tooltip"
               >
-                {user.displayName}
+                <p className="text-center font-semibold py-1 border-b-2"> {user.displayName}</p>
+               
+                <button className="btn mt-2">Dashboard</button>
               </span>
+              
             </div>
             <Link>
-              <button onClick={handleSignOut} className="btn">
+              <button onClick={handleSignOut} className="py-1 md:py-2  px-2 rounded-lg bg-gray-800 font-semibold">
                 Logout
               </button>
             </Link>
