@@ -141,7 +141,7 @@ const BeVolunteer = () => {
               ) : (
                 <button
                   onClick={handleBecomeVolunteer}
-                  className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600 transition"
+                  className="bg-sky-600 text-white py-2 px-6 rounded-lg hover:bg-sky-800 transition"
                 >
                   Become a Volunteer
                 </button>
