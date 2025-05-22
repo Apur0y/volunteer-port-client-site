@@ -62,7 +62,7 @@ useEffect(() => {
   return (
     <div>
       {/* Main Banner Content */}
-      <div className="absolute z-10 inset-0 flex flex-col items-start justify-center text-left text-white pt-20 md:pt-20 px-6 lg:px-20 h-full">
+      <div className="absolute z-10 inset-0 flex flex-col items-start md:justify-center  text-left text-white pt-20 md:pt-20 px-6 lg:px-20 h-full">
         <div className=" mx-auto">
           <p className="text-lg lg:text-2xl font-semibold md:mb-4">
             Making a Difference
@@ -78,7 +78,7 @@ useEffect(() => {
 
         <div className="relative w-full ">
 
-        <div className="mb-1 bg-white/60 rounded-lg p-3 md:p-8 flex gap-2 justify-center items-center mx-auto md:w-11/12">
+        <div className="mb-1 bg-white/60 rounded-lg p-3 md:p-8 flex gap-2 justify-center items-center mx-auto ">
           <input
             type="text"
             value={searchQuery}
