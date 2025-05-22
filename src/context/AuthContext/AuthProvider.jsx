@@ -7,7 +7,7 @@ import { HelmetProvider } from 'react-helmet-async';
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [light, setLight] = useState(true);
+    const [light, setLight] = useState(false);
 
     const handleToggle = () => {
         setLight(!light);
