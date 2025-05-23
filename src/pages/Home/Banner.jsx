@@ -78,7 +78,7 @@ useEffect(() => {
 
         <div className="relative w-full ">
 
-        <div className="mb-1 bg-white/60 rounded-lg p-3 md:p-8 flex gap-2 justify-center items-center mx-auto ">
+        <div className="mb-1 bg-white/60 rounded-lg p-3 md:p-8 flex gap-2 justify-center items-center mx-auto p-0">
           <input
             type="text"
             value={searchQuery}
